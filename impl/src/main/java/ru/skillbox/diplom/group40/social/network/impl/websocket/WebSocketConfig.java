@@ -6,18 +6,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-import ru.skillbox.diplom.group40.social.network.impl.service.dialog.DialogService;
+//import ru.skillbox.diplom.group40.social.network.impl.service.dialog.DialogService;
 
 @Configuration
 @EnableWebSocket
 @RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketConfigurer {
-    private final DialogService dialogService;
+//    private final DialogService dialogService;
 //    /*
     //1
     @Bean
     public WebSocketHandler getWebSocketHandler() {
-        return new WebSocketHandler(dialogService);
+        return new WebSocketHandler();
     }
 
     @Override

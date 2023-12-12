@@ -10,7 +10,7 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import ru.skillbox.diplom.group40.social.network.impl.service.dialog.DialogService;
+
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentMap;
 @RequiredArgsConstructor
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private final DialogService dialogService;
+//    private final DialogService dialogService;
     ConcurrentMap<UUID, List<WebSocketSession>> sessionMap= new ConcurrentHashMap();
 
     @Override
@@ -56,7 +56,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {     // private
         log.info("WebSocketHandler: handleTextMessage() startMethod: получен message: {}", message.getPayload());
-        dialogService.handleSocketMessage(message);
+//        dialogService.handleSocketMessage(message);
 
         List<WebSocketSession> sendingList = sessionMap.getOrDefault(getRecipientId(message), new ArrayList<>());
         for (WebSocketSession registerSession : sendingList) {

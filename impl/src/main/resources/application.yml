@@ -4,7 +4,7 @@ spring:
   liquibase:
     enabled: true
     drop-first: ${DROP_FIRST:false}
-    change-log: classpath:database-social.network-changelog.xml
+    change-log: classpath:database-task.management-changelog.xml
 #    default-schema: tasks
 
   datasource:
@@ -13,13 +13,13 @@ spring:
     password: ${DB_PASSWORD:tasks}
     driverClassName: org.postgresql.Driver
 
-  cache:
-    cache-names: countriesCache, citiesCache
-    type: simple
-  data:
-    redis:
-      host: localhost
-      port: 6379
+#  cache:
+#    cache-names: countriesCache, citiesCache
+#    type: simple
+#  data:
+#    redis:
+#      host: localhost
+#      port: 6379
 
   jpa:
     show-sql: false
@@ -101,6 +101,6 @@ security:
       bFSb2IF1rMRuGMjD0Q8hdBQ=
       -----END RSA PRIVATE KEY-----
 
-cloudinary.api_secret: ${CL_API_SECRET:BzsU8c95MxdyLtzjzoxulVX47K8}
-cloudinary.cloud_name: ${CL_NAME:networkskillbox}
-cloudinary.api_key: ${CL_KEY:394391898715588}
+#cloudinary.api_secret: ${CL_API_SECRET:BzsU8c95MxdyLtzjzoxulVX47K8}
+#cloudinary.cloud_name: ${CL_NAME:networkskillbox}
+#cloudinary.api_key: ${CL_KEY:394391898715588}
