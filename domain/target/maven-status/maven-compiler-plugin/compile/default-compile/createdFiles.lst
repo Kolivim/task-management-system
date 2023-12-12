@@ -1,6 +1,5 @@
 ru\skillbox\diplom\group40\social\network\domain\geo\City.class
 ru\skillbox\diplom\group40\social\network\domain\geo\Country.class
-ru\skillbox\diplom\group40\social\network\domain\notification\EventNotification.class
 ru\skillbox\diplom\group40\social\network\domain\friend\Friend_.class
 ru\skillbox\diplom\group40\social\network\domain\post\Type.class
 ru\skillbox\diplom\group40\social\network\domain\dialog\Dialog_.class
@@ -11,21 +10,21 @@ ru\skillbox\diplom\group40\social\network\domain\dialog\Message_.class
 ru\skillbox\diplom\group40\social\network\domain\dialog\Dialog.class
 ru\skillbox\diplom\group40\social\network\domain\post\Post_.class
 ru\skillbox\diplom\group40\social\network\domain\post\Post.class
-ru\skillbox\diplom\group40\social\network\domain\notification\EventNotification_.class
 ru\skillbox\diplom\group40\social\network\domain\base\BaseEntity_.class
 ru\skillbox\diplom\group40\social\network\domain\base\audit\UserJsonType.class
 ru\skillbox\diplom\group40\social\network\domain\geo\Country_.class
 ru\skillbox\diplom\group40\social\network\domain\post\Like_.class
 ru\skillbox\diplom\group40\social\network\domain\user\User.class
 ru\skillbox\diplom\group40\social\network\domain\tag\Tag_.class
+ru\skillbox\diplom\group40\social\network\domain\task\Task_.class
 ru\skillbox\diplom\group40\social\network\domain\dialog\Message.class
 ru\skillbox\diplom\group40\social\network\domain\post\Comment.class
+ru\skillbox\diplom\group40\social\network\domain\task\Task.class
 ru\skillbox\diplom\group40\social\network\domain\account\Account.class
 ru\skillbox\diplom\group40\social\network\domain\base\audit\BaseAuditedEntity.class
 ru\skillbox\diplom\group40\social\network\domain\role\Role.class
 ru\skillbox\diplom\group40\social\network\domain\post\Like.class
 ru\skillbox\diplom\group40\social\network\domain\captcha\Captcha_.class
-ru\skillbox\diplom\group40\social\network\domain\notification\Settings_.class
 ru\skillbox\diplom\group40\social\network\domain\friend\Friend.class
 ru\skillbox\diplom\group40\social\network\domain\user\User_.class
 ru\skillbox\diplom\group40\social\network\domain\passwordRecovery\RecoveryToken_.class
@@ -34,5 +33,4 @@ ru\skillbox\diplom\group40\social\network\domain\passwordRecovery\RecoveryToken.
 ru\skillbox\diplom\group40\social\network\domain\role\Role_.class
 ru\skillbox\diplom\group40\social\network\domain\account\Account_.class
 ru\skillbox\diplom\group40\social\network\domain\base\BaseEntity.class
-ru\skillbox\diplom\group40\social\network\domain\notification\Settings.class
 ru\skillbox\diplom\group40\social\network\domain\geo\City_.class

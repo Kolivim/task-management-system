@@ -12,7 +12,7 @@ import ru.skillbox.diplom.group40.social.network.domain.geo.Country;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-12T15:49:19+0300",
+    date = "2023-12-12T16:01:05+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
