@@ -26,12 +26,11 @@ public class TaskService {
 
     private final TaskMapper taskMapper;
     private  final TaskRepository taskRepository;
+    private static String NOT_FOUND_MESSAGE = "Задача не найдена";
 
     public TaskDTO create(TaskDTO taskDTO) {
         log.info("TaskService: create(TaskDTO taskDTO) startMethod, taskDTO:{}", taskDTO);
         taskDTO.setAuthorId(AuthUtil.getUserId());
-
-//        Task task = taskRepository.save(taskMapper.toTask(taskDTO));
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTask(taskDTO)));
     }
 
@@ -61,10 +60,13 @@ public class TaskService {
     /** Все таски где переданный айдишник - исполнитель таски */
     public Page<TaskDTO> getAllByExecutorId(UUID id, Pageable page) {
 
+        /*
         BaseSearchDto baseSearchDto = new BaseSearchDto();
         baseSearchDto.setIsDeleted(false);
+        */
 
-        Specification taskSpecification = SpecificationUtils.getBaseSpecification(baseSearchDto)
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.EXECUTOR_ID, id));
 
         Page<Task> tasks = taskRepository.findAll(taskSpecification, page);
@@ -72,6 +74,58 @@ public class TaskService {
         return tasksDto;
     }
 
+    private BaseSearchDto getBaseSearchDto(){
+        BaseSearchDto baseSearchDto = new BaseSearchDto();
+        baseSearchDto.setIsDeleted(false);
+        return  baseSearchDto;
+    }
+
+    public void deleteById(UUID id) {
+        log.info("TaskService: deleteById(UUID id) startMethod, id: {}", id);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
+                .and(SpecificationUtils.in(Task_.ID, id));
+
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+        task.setIsDeleted(true);
+
+        // TODO: Подключить после добавления комментов
+        /*
+        List<Comment> comments = commentService.getAllByPatentId(id);
+        for (Comment comment : comments) {
+            deleteComment(id, comment.getId());
+        }
+        */
+
+        log.info("TaskService: deleteById(UUID id) endMethod, save Task: {}", taskRepository.save(task));
+    }
+
+    public TaskDTO update(TaskDTO taskDTO) {
+        log.info("TaskService: update(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
+                .and(SpecificationUtils.in(Task_.ID, taskDTO.getId()));
+
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(/*NotFoundException(NOT_FOUND_MESSAGE)::new*/);
+
+        return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTask(taskDTO, task)));
+    }
+
+    public TaskDTO updateStatus(TaskDTO taskDTO) {
+        log.info("TaskService: updateStatus(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId())
+                        .or(SpecificationUtils.in(Task_.EXECUTOR_ID, AuthUtil.getUserId())))
+                .and(SpecificationUtils.in(Task_.ID, taskDTO.getId()));
+
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+
+        return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskStatus(taskDTO, task)));
+
+    }
 
     /** Исправить ниже: */ // TODO:
 

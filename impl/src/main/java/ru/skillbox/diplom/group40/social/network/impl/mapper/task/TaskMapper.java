@@ -1,12 +1,11 @@
 package ru.skillbox.diplom.group40.social.network.impl.mapper.task;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
 import ru.skillbox.diplom.group40.social.network.domain.task.Task;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TaskMapper {
 
     //    @Mapping(target = "rating", ignore = true)
@@ -17,4 +16,17 @@ public interface TaskMapper {
 
     TaskDTO toTaskDTO(Task task);
 
+    //    @Mapping(target = "timeChanged", source = "timeChanged", defaultExpression = "java(ZonedDateTime.now())")
+    Task toTask(TaskDTO taskDTO, @MappingTarget Task task);
+
+    @Mappings({
+            @Mapping(target = "priority", ignore = true),
+            @Mapping(target = "title", ignore = true),
+            @Mapping(target = "description", ignore = true),
+            @Mapping(target = "authorId", ignore = true),
+            @Mapping(target = "executorId", ignore = true),
+            @Mapping(target = "id", ignore = true),
+            @Mapping(target = "isDeleted", ignore = true),
+    })
+    Task toTaskStatus(TaskDTO taskDTO, @MappingTarget Task task);
 }

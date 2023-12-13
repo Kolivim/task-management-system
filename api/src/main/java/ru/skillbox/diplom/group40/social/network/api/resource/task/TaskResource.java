@@ -14,6 +14,12 @@ public interface TaskResource {
     @PostMapping("")
     ResponseEntity<TaskDTO> create(@RequestBody TaskDTO taskDTO);
 
+    @PutMapping("")
+    ResponseEntity update(TaskDTO taskDTO);
+
+    @PutMapping("/status")
+    ResponseEntity updateStatus(TaskDTO taskDTO);
+
     @GetMapping("/author")
     ResponseEntity<Page<TaskDTO>> getAllMeAuthorId(Pageable page);
 
@@ -26,6 +32,9 @@ public interface TaskResource {
 
     @GetMapping("/executor/{id}")
     ResponseEntity<Page<TaskDTO>> getAllByExecutorId(@PathVariable UUID id, Pageable page);
+
+    @DeleteMapping("/{id}")
+    ResponseEntity deleteById(UUID id);
 
 //    @PutMapping("/{id}/comment")
 //    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto);

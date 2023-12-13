@@ -20,6 +20,7 @@ ru\skillbox\diplom\group40\social\network\api\dto\account\RolesDto.class
 ru\skillbox\diplom\group40\social\network\api\dto\account\Authorities.class
 ru\skillbox\diplom\group40\social\network\api\resource\account\AccountResource.class
 ru\skillbox\diplom\group40\social\network\api\dto\auth\AuthenticateDto$AuthenticateDtoBuilder.class
+ru\skillbox\diplom\group40\social\network\api\dto\task\TaskSearchDTO.class
 ru\skillbox\diplom\group40\social\network\api\dto\auth\AuthenticateResponseDto.class
 ru\skillbox\diplom\group40\social\network\api\dto\auth\JwtDto.class
 ru\skillbox\diplom\group40\social\network\api\dto\account\AccountDto.class

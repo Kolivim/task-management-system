@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
@@ -20,9 +19,20 @@ public class TaskResourceImpl implements TaskResource {
     private final TaskService taskService;
 
     @Override
-    @PostMapping("")
+//    @PostMapping("")
     public ResponseEntity<TaskDTO> create(@RequestBody TaskDTO taskDTO) {
         return ResponseEntity.ok(taskService.create(taskDTO));
+    }
+
+    @Override
+//    @PutMapping("")
+    public ResponseEntity update(TaskDTO taskDTO) {
+        return ResponseEntity.ofNullable(taskService.update(taskDTO));
+    }
+
+    @Override
+    public ResponseEntity updateStatus(TaskDTO taskDTO) {
+        return ResponseEntity.ofNullable(taskService.updateStatus(taskDTO));
     }
 
     @Override
@@ -45,6 +55,12 @@ public class TaskResourceImpl implements TaskResource {
         return ResponseEntity.ok(taskService.getAllByExecutorId(id, page));
     }
 
+    @Override
+    public ResponseEntity deleteById(UUID id) {
+        taskService.deleteById(id);
+        return ResponseEntity.ok().body("Задача удалёна успешно");
+    }
+
     /** Исправить ниже: */ // TODO:
 
             /*
@@ -53,11 +69,7 @@ public class TaskResourceImpl implements TaskResource {
 
     private final CommentService commentService;
 
-    @Override
-    @PutMapping("")
-    public ResponseEntity update(PostDto postDto) {
-        return ResponseEntity.ofNullable(postService.update(postDto));
-    }
+
 
     @Override
     @GetMapping("/{id}")
@@ -76,12 +88,7 @@ public class TaskResourceImpl implements TaskResource {
         return ResponseEntity.ok(postService.getAll(postSearchDto, page));
     }
 
-    @Override
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(UUID id) {
-        postService.deleteById(id);
-        return ResponseEntity.ok().body("Пользователь удалён успешно");
-    }
+
 
     @Override
     @PutMapping("/{id}/comment")

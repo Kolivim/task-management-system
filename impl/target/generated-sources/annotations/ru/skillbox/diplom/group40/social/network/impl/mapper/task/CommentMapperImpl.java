@@ -9,7 +9,7 @@ import ru.skillbox.diplom.group40.social.network.domain.task.Comment;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-13T00:42:35+0300",
+    date = "2023-12-14T00:39:50+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
