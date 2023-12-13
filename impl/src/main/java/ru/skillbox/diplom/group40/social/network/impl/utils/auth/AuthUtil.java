@@ -24,6 +24,7 @@ public class AuthUtil {
     }
     public static UUID getUserId(){
         Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UUID uuid = UUID.fromString(jwt.getClaim("user_id"));
         return UUID.fromString(jwt.getClaim("user_id"));
     }
 

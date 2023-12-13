@@ -1,16 +1,38 @@
 package ru.skillbox.diplom.group40.social.network.api.resource.task;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
+
+import java.util.UUID;
 
 @RequestMapping("/api/v1/task")
 public interface TaskResource {
 
     @PostMapping("")
     ResponseEntity<TaskDTO> create(@RequestBody TaskDTO taskDTO);
+
+    @GetMapping("/author")
+    ResponseEntity<Page<TaskDTO>> getAllMeAuthorId(Pageable page);
+
+    @GetMapping("/executor")
+    ResponseEntity<Page<TaskDTO>> getAllMeExecutorId(Pageable page);
+
+
+    @GetMapping("/author/{id}")
+    ResponseEntity<Page<TaskDTO>> getAllByAuthorId(@PathVariable UUID id, Pageable page);
+
+    @GetMapping("/executor/{id}")
+    ResponseEntity<Page<TaskDTO>> getAllByExecutorId(@PathVariable UUID id, Pageable page);
+
+//    @PutMapping("/{id}/comment")
+//    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto);
+//    @PostMapping("/{id}/comment")
+//    @ResponseBody
+//    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto,
+//                                                    @PathVariable UUID id);
 
     /** Исправить ниже: */ // TODO:
 

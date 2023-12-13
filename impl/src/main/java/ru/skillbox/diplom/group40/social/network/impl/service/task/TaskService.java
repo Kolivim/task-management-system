@@ -2,13 +2,21 @@ package ru.skillbox.diplom.group40.social.network.impl.service.task;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.skillbox.diplom.group40.social.network.api.dto.search.BaseSearchDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
 import ru.skillbox.diplom.group40.social.network.domain.task.Task;
+import ru.skillbox.diplom.group40.social.network.domain.task.Task_;
 import ru.skillbox.diplom.group40.social.network.impl.mapper.task.TaskMapper;
 import ru.skillbox.diplom.group40.social.network.impl.repository.task.TaskRepository;
 import ru.skillbox.diplom.group40.social.network.impl.utils.auth.AuthUtil;
+import ru.skillbox.diplom.group40.social.network.impl.utils.specification.SpecificationUtils;
+
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -23,9 +31,47 @@ public class TaskService {
         log.info("TaskService: create(TaskDTO taskDTO) startMethod, taskDTO:{}", taskDTO);
         taskDTO.setAuthorId(AuthUtil.getUserId());
 
-        Task task = taskRepository.save(taskMapper.toTask(taskDTO));
+//        Task task = taskRepository.save(taskMapper.toTask(taskDTO));
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTask(taskDTO)));
     }
+
+    /** Все таски где передается айдишник из логина - в автора таски */
+    public Page<TaskDTO> getAllMeAuthorId(Pageable page) {
+        return getAllByAuthorId(AuthUtil.getUserId(), page);
+    }
+
+    public Page<TaskDTO> getAllMeExecutorId(Pageable page) {
+        return getAllByExecutorId(AuthUtil.getUserId(), page);
+    }
+
+    /** Все таски где передается айдишник из логина - в исполнителя таски */
+    public Page<TaskDTO> getAllByAuthorId(UUID id, Pageable page) {
+
+        BaseSearchDto baseSearchDto = new BaseSearchDto();
+        baseSearchDto.setIsDeleted(false);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(baseSearchDto)
+                .and(SpecificationUtils.in(Task_.AUTHOR_ID, id));
+
+        Page<Task> tasks = taskRepository.findAll(taskSpecification, page);
+        Page<TaskDTO> tasksDto = tasks.map(taskMapper::toTaskDTO);
+        return tasksDto;
+    }
+
+    /** Все таски где переданный айдишник - исполнитель таски */
+    public Page<TaskDTO> getAllByExecutorId(UUID id, Pageable page) {
+
+        BaseSearchDto baseSearchDto = new BaseSearchDto();
+        baseSearchDto.setIsDeleted(false);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(baseSearchDto)
+                .and(SpecificationUtils.in(Task_.EXECUTOR_ID, id));
+
+        Page<Task> tasks = taskRepository.findAll(taskSpecification, page);
+        Page<TaskDTO> tasksDto = tasks.map(taskMapper::toTaskDTO);
+        return tasksDto;
+    }
+
 
     /** Исправить ниже: */ // TODO:
 
