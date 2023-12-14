@@ -1,14 +1,18 @@
 package ru.skillbox.diplom.group40.social.network.impl.mapper.task;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
+import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.StatusType;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
+import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
 import ru.skillbox.diplom.group40.social.network.domain.task.Task;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-14T00:39:50+0300",
+    date = "2023-12-14T22:45:21+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
@@ -35,6 +39,7 @@ public class TaskMapperImpl implements TaskMapper {
         task.setDescription( taskDTO.getDescription() );
         task.setAuthorId( taskDTO.getAuthorId() );
         task.setExecutorId( taskDTO.getExecutorId() );
+        task.setComments( commentDtoListToCommentList( taskDTO.getComments() ) );
 
         return task;
     }
@@ -55,6 +60,7 @@ public class TaskMapperImpl implements TaskMapper {
         taskDTO.setDescription( task.getDescription() );
         taskDTO.setAuthorId( task.getAuthorId() );
         taskDTO.setExecutorId( task.getExecutorId() );
+        taskDTO.setComments( commentListToCommentDtoList( task.getComments() ) );
 
         return taskDTO;
     }
@@ -89,6 +95,19 @@ public class TaskMapperImpl implements TaskMapper {
         if ( taskDTO.getExecutorId() != null ) {
             task.setExecutorId( taskDTO.getExecutorId() );
         }
+        if ( task.getComments() != null ) {
+            List<Comment> list = commentDtoListToCommentList( taskDTO.getComments() );
+            if ( list != null ) {
+                task.getComments().clear();
+                task.getComments().addAll( list );
+            }
+        }
+        else {
+            List<Comment> list = commentDtoListToCommentList( taskDTO.getComments() );
+            if ( list != null ) {
+                task.setComments( list );
+            }
+        }
 
         return task;
     }
@@ -102,7 +121,102 @@ public class TaskMapperImpl implements TaskMapper {
         if ( taskDTO.getStatus() != null ) {
             task.setStatus( taskDTO.getStatus() );
         }
+        if ( task.getComments() != null ) {
+            List<Comment> list = commentDtoListToCommentList( taskDTO.getComments() );
+            if ( list != null ) {
+                task.getComments().clear();
+                task.getComments().addAll( list );
+            }
+        }
+        else {
+            List<Comment> list = commentDtoListToCommentList( taskDTO.getComments() );
+            if ( list != null ) {
+                task.setComments( list );
+            }
+        }
 
         return task;
+    }
+
+    @Override
+    public Task toTaskExecutor(TaskDTO taskDTO, Task task) {
+        if ( taskDTO == null ) {
+            return task;
+        }
+
+        if ( taskDTO.getExecutorId() != null ) {
+            task.setExecutorId( taskDTO.getExecutorId() );
+        }
+        if ( task.getComments() != null ) {
+            List<Comment> list = commentDtoListToCommentList( taskDTO.getComments() );
+            if ( list != null ) {
+                task.getComments().clear();
+                task.getComments().addAll( list );
+            }
+        }
+        else {
+            List<Comment> list = commentDtoListToCommentList( taskDTO.getComments() );
+            if ( list != null ) {
+                task.setComments( list );
+            }
+        }
+
+        return task;
+    }
+
+    protected Comment commentDtoToComment(CommentDto commentDto) {
+        if ( commentDto == null ) {
+            return null;
+        }
+
+        Comment comment = new Comment();
+
+        comment.setId( commentDto.getId() );
+        comment.setIsDeleted( commentDto.getIsDeleted() );
+        comment.setAuthorId( commentDto.getAuthorId() );
+        comment.setCommentText( commentDto.getCommentText() );
+
+        return comment;
+    }
+
+    protected List<Comment> commentDtoListToCommentList(List<CommentDto> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Comment> list1 = new ArrayList<Comment>( list.size() );
+        for ( CommentDto commentDto : list ) {
+            list1.add( commentDtoToComment( commentDto ) );
+        }
+
+        return list1;
+    }
+
+    protected CommentDto commentToCommentDto(Comment comment) {
+        if ( comment == null ) {
+            return null;
+        }
+
+        CommentDto commentDto = new CommentDto();
+
+        commentDto.setId( comment.getId() );
+        commentDto.setIsDeleted( comment.getIsDeleted() );
+        commentDto.setAuthorId( comment.getAuthorId() );
+        commentDto.setCommentText( comment.getCommentText() );
+
+        return commentDto;
+    }
+
+    protected List<CommentDto> commentListToCommentDtoList(List<Comment> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<CommentDto> list1 = new ArrayList<CommentDto>( list.size() );
+        for ( Comment comment : list ) {
+            list1.add( commentToCommentDto( comment ) );
+        }
+
+        return list1;
     }
 }

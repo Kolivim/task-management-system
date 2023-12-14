@@ -7,11 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.search.BaseSearchDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
+import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
 import ru.skillbox.diplom.group40.social.network.domain.task.Task;
 import ru.skillbox.diplom.group40.social.network.domain.task.Task_;
+import ru.skillbox.diplom.group40.social.network.impl.mapper.comment.CommentMapper;
 import ru.skillbox.diplom.group40.social.network.impl.mapper.task.TaskMapper;
+import ru.skillbox.diplom.group40.social.network.impl.repository.comment.CommentRepository;
 import ru.skillbox.diplom.group40.social.network.impl.repository.task.TaskRepository;
 import ru.skillbox.diplom.group40.social.network.impl.utils.auth.AuthUtil;
 import ru.skillbox.diplom.group40.social.network.impl.utils.specification.SpecificationUtils;
@@ -25,7 +29,9 @@ import java.util.UUID;
 public class TaskService {
 
     private final TaskMapper taskMapper;
+    private final CommentMapper commentMapper;
     private  final TaskRepository taskRepository;
+    private  final CommentRepository commentRepository;
     private static String NOT_FOUND_MESSAGE = "Задача не найдена";
 
     public TaskDTO create(TaskDTO taskDTO) {
@@ -126,6 +132,54 @@ public class TaskService {
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskStatus(taskDTO, task)));
 
     }
+
+    public TaskDTO updateExecutor(TaskDTO taskDTO) {
+        log.info("TaskService: updateExecutor(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
+                .and(SpecificationUtils.in(Task_.ID, taskDTO.getId()));
+
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+
+        return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskExecutor(taskDTO, task)));
+    }
+
+    public TaskDTO getById(UUID id) {
+        log.info("TaskService: getById(UUID idO) startMethod, id: {}", id);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Task_.ID, id));
+
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+
+        return taskMapper.toTaskDTO(task);
+    }
+
+    public TaskDTO createComment(CommentDto commentDto) {
+        log.info("TaskService: createComment(CommentDto commentDto) startMethod, TaskDTO: {}", commentDto);
+
+        commentDto.setAuthorId(AuthUtil.getUserId());
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+//                .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
+                .and(SpecificationUtils.in(Task_.ID, commentDto.getTaskId()));
+
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+
+        Comment comment = commentMapper.dtoToModel(commentDto);
+        comment.setTask(task);
+        Comment afterComment = commentRepository.save(comment);
+        log.info("TaskService: createComment Comment: {}, aftrComment: {}", comment, afterComment);
+
+
+//        task.addComment(comment);
+//        Task afterTask = taskRepository.save(task);
+//        log.info("TaskService: createComment after save TASK: {}", afterTask);
+
+        return taskMapper.toTaskDTO(task);
+    }
+
 
     /** Исправить ниже: */ // TODO:
 

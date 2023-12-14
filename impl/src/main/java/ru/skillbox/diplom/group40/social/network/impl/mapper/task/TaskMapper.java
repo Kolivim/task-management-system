@@ -29,4 +29,15 @@ public interface TaskMapper {
             @Mapping(target = "isDeleted", ignore = true),
     })
     Task toTaskStatus(TaskDTO taskDTO, @MappingTarget Task task);
+
+    @Mappings({
+            @Mapping(target = "priority", ignore = true),
+            @Mapping(target = "title", ignore = true),
+            @Mapping(target = "description", ignore = true),
+            @Mapping(target = "authorId", ignore = true),
+            @Mapping(target = "status", ignore = true),
+            @Mapping(target = "id", ignore = true),
+            @Mapping(target = "isDeleted", ignore = true),
+    })
+    Task toTaskExecutor(TaskDTO taskDTO, @MappingTarget Task task);
 }

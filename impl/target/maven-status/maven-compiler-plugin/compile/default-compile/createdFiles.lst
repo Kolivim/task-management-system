@@ -1,7 +1,6 @@
 ru\skillbox\diplom\group40\social\network\impl\repository\captcha\CaptchaRepository.class
 ru\skillbox\diplom\group40\social\network\impl\resource\advice\AdviceController.class
 ru\skillbox\diplom\group40\social\network\impl\repository\user\UserRepository.class
-ru\skillbox\diplom\group40\social\network\impl\repository\task\CommentRepository.class
 ru\skillbox\diplom\group40\social\network\impl\service\account\AccountService.class
 ru\skillbox\diplom\group40\social\network\impl\mapper\account\MapperAccount.class
 ru\skillbox\diplom\group40\social\network\impl\config\audit\AuditConfig.class
@@ -9,6 +8,8 @@ ru\skillbox\diplom\group40\social\network\impl\exception\NotFoundException.class
 ru\skillbox\diplom\group40\social\network\impl\security\SecurityConfig.class
 ru\skillbox\diplom\group40\social\network\impl\websocket\TestControllerWS.class
 ru\skillbox\diplom\group40\social\network\impl\security\jwt\TokenGenerator.class
+ru\skillbox\diplom\group40\social\network\impl\mapper\comment\CommentMapper.class
+ru\skillbox\diplom\group40\social\network\impl\mapper\comment\CommentMapperImpl.class
 ru\skillbox\diplom\group40\social\network\impl\security\cookie\CookieFilter.class
 ru\skillbox\diplom\group40\social\network\impl\repository\recoveryToken\RecoveryTokenRepository.class
 ru\skillbox\diplom\group40\social\network\impl\mapper\account\MapperAuthenticate.class
@@ -20,10 +21,10 @@ ru\skillbox\diplom\group40\social\network\impl\utils\specification\Specification
 ru\skillbox\diplom\group40\social\network\impl\security\cookie\JwtTokenWrapper.class
 ru\skillbox\diplom\group40\social\network\impl\utils\passwordRecovery\PasswordRecoveryUtil.class
 ru\skillbox\diplom\group40\social\network\impl\security\jwt\KeyUtils.class
-ru\skillbox\diplom\group40\social\network\impl\mapper\task\CommentMapper.class
 ru\skillbox\diplom\group40\social\network\impl\service\auth\AuthService.class
 ru\skillbox\diplom\group40\social\network\impl\utils\mail\MailUtil.class
 ru\skillbox\diplom\group40\social\network\impl\mapper\base\BaseMapperImpl.class
+ru\skillbox\diplom\group40\social\network\impl\repository\comment\CommentRepository.class
 ru\skillbox\diplom\group40\social\network\impl\security\jwt\JwtToAuthTokenConverter.class
 ru\skillbox\diplom\group40\social\network\impl\security\cookie\BodyWrapper$1.class
 ru\skillbox\diplom\group40\social\network\impl\service\passRecovery\RecoveryService.class
@@ -32,15 +33,16 @@ ru\skillbox\diplom\group40\social\network\impl\utils\audit\AuditorAwareImpl.clas
 ru\skillbox\diplom\group40\social\network\impl\Application.class
 ru\skillbox\diplom\group40\social\network\impl\service\task\TaskService.class
 ru\skillbox\diplom\group40\social\network\impl\websocket\WebSocketSessionManager.class
-ru\skillbox\diplom\group40\social\network\impl\mapper\task\CommentMapperImpl.class
 ru\skillbox\diplom\group40\social\network\impl\security\cookie\BodyWrapper.class
 ru\skillbox\diplom\group40\social\network\impl\resource\auth\AuthControllerImpl.class
 ru\skillbox\diplom\group40\social\network\impl\mapper\auth\JwtMapper.class
+ru\skillbox\diplom\group40\social\network\impl\resource\comment\CommentResourceImpl.class
 ru\skillbox\diplom\group40\social\network\impl\resource\account\AccountResourceImpl.class
 ru\skillbox\diplom\group40\social\network\impl\security\FilterChainConfig.class
 ru\skillbox\diplom\group40\social\network\impl\repository\role\RoleRepository.class
 ru\skillbox\diplom\group40\social\network\impl\resource\task\TaskResourceImpl.class
 ru\skillbox\diplom\group40\social\network\impl\utils\auth\AuthUtil.class
+ru\skillbox\diplom\group40\social\network\impl\service\comment\CommentService.class
 ru\skillbox\diplom\group40\social\network\impl\mapper\task\TaskMapperImpl.class
 ru\skillbox\diplom\group40\social\network\impl\repository\base\BaseRepositoryImpl.class
 ru\skillbox\diplom\group40\social\network\impl\websocket\WebSocketConfig.class

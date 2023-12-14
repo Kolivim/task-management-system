@@ -1,14 +1,14 @@
 ru\skillbox\diplom\group40\social\network\domain\user\User.class
-ru\skillbox\diplom\group40\social\network\domain\task\Comment.class
 ru\skillbox\diplom\group40\social\network\domain\task\Task_.class
 ru\skillbox\diplom\group40\social\network\domain\task\Task.class
 ru\skillbox\diplom\group40\social\network\domain\account\Account.class
 ru\skillbox\diplom\group40\social\network\domain\base\audit\BaseAuditedEntity.class
 ru\skillbox\diplom\group40\social\network\domain\captcha\Captcha.class
 ru\skillbox\diplom\group40\social\network\domain\role\Role.class
+ru\skillbox\diplom\group40\social\network\domain\comment\Comment.class
 ru\skillbox\diplom\group40\social\network\domain\captcha\Captcha_.class
-ru\skillbox\diplom\group40\social\network\domain\task\Comment_.class
 ru\skillbox\diplom\group40\social\network\domain\user\User_.class
+ru\skillbox\diplom\group40\social\network\domain\comment\Comment_.class
 ru\skillbox\diplom\group40\social\network\domain\passwordRecovery\RecoveryToken_.class
 ru\skillbox\diplom\group40\social\network\domain\base\audit\BaseAuditedEntity_.class
 ru\skillbox\diplom\group40\social\network\domain\passwordRecovery\RecoveryToken.class

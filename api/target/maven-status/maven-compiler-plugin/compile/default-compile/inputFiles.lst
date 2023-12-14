@@ -11,13 +11,14 @@ D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\gr
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\auth\RegistrationDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\auth\JwtDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\account\Authorities.java
-D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\task\CommentDto.java
+D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\resource\comment\CommentResource.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\auth\AuthenticateDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\auth\NewPasswordDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\task\TaskSearchDTO.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\account\StatusCode.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\account\AccountSearchDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\user\UserDto.java
+D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\comment\CommentDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\auth\CaptchaDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\account\RolesDto.java
 D:\Repository\tms\task-management-system\api\src\main\java\ru\skillbox\diplom\group40\social\network\api\dto\task\StatusType.java

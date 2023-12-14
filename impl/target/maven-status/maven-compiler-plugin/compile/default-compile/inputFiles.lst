@@ -1,8 +1,11 @@
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\mapper\account\MapperAuthenticate.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\resource\auth\AuthControllerImpl.java
+D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\resource\comment\CommentResourceImpl.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\security\cookie\BodyWrapper.java
+D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\service\comment\CommentService.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\captcha\CaptchaRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\websocket\WebSocketConfig.java
+D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\mapper\comment\CommentMapper.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\base\BaseRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\recoveryToken\RecoveryTokenRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\utils\specification\SpecificationUtils.java
@@ -12,6 +15,7 @@ D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\g
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\account\AccountRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\service\role\RoleService.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\mapper\account\MapperAccount.java
+D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\comment\CommentRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\resource\account\AccountResourceImpl.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\utils\mail\MailUtil.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\task\TaskRepository.java
@@ -20,7 +24,6 @@ D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\g
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\service\account\AccountService.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\user\UserRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\security\jwt\JwtToAuthTokenConverter.java
-D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\mapper\task\CommentMapper.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\service\task\TaskService.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\mapper\auth\JwtMapper.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\security\cookie\CookieFilter.java
@@ -36,7 +39,6 @@ D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\g
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\utils\passwordRecovery\PasswordRecoveryUtil.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\config\audit\AuditConfig.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\security\jwt\KeyUtils.java
-D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\repository\task\CommentRepository.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\service\auth\AuthService.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\websocket\WebSocketSessionManager.java
 D:\Repository\tms\task-management-system\impl\src\main\java\ru\skillbox\diplom\group40\social\network\impl\resource\task\TaskResourceImpl.java

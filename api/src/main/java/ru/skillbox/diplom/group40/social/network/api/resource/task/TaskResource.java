@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
 
 import java.util.UUID;
@@ -20,6 +21,9 @@ public interface TaskResource {
     @PutMapping("/status")
     ResponseEntity updateStatus(TaskDTO taskDTO);
 
+    @PutMapping("/executor")
+    ResponseEntity updateExecutor(TaskDTO taskDTO);
+
     @GetMapping("/author")
     ResponseEntity<Page<TaskDTO>> getAllMeAuthorId(Pageable page);
 
@@ -35,6 +39,12 @@ public interface TaskResource {
 
     @DeleteMapping("/{id}")
     ResponseEntity deleteById(UUID id);
+
+    @GetMapping("/{id}")
+    ResponseEntity<TaskDTO> getById(@PathVariable UUID id);
+
+    @PostMapping("/addcomment")
+    ResponseEntity<TaskDTO> createComment(@RequestBody CommentDto commentDto);
 
 //    @PutMapping("/{id}/comment")
 //    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto);

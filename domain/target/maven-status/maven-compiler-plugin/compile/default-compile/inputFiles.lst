@@ -1,4 +1,5 @@
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\base\audit\BaseAuditedEntity.java
+D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\comment\Comment.java
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\task\Task.java
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\passwordRecovery\RecoveryToken.java
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\user\User.java
@@ -7,4 +8,3 @@ D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\role\Role.java
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\captcha\Captcha.java
 D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\account\Account.java
-D:\Repository\tms\task-management-system\domain\src\main\java\ru\skillbox\diplom\group40\social\network\domain\task\Comment.java

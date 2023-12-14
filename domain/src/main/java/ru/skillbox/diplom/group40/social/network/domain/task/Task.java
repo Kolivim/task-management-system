@@ -5,7 +5,10 @@ import lombok.*;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.PriorityType;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.StatusType;
 import ru.skillbox.diplom.group40.social.network.domain.base.BaseEntity;
+import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "task")
@@ -40,4 +43,29 @@ public class Task extends BaseEntity {
     @Column(name = "executor_id")
     private UUID executorId;
 
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+//            CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "task_comment",
+////            joinColumns = @JoinColumn(name = "id"),
+////            inverseJoinColumns = @JoinColumn(name = "task_id")
+//            joinColumns = @JoinColumn(name="task_id", referencedColumnName="id"),
+//            inverseJoinColumns = @JoinColumn(name="comment_id", referencedColumnName="id")
+//    )
+    @OneToMany(mappedBy = "task")
+    private List<Comment> comments = new ArrayList<>();
+
+
+    public void addComment(Comment comment){
+        comment.setTask(this);
+        this.comments.add(comment);
+
+    }
+    public void removeComment(Comment comment){
+        comment.setTask(null);
+        this.comments.remove(comment);
+    }
+
 }
+
+

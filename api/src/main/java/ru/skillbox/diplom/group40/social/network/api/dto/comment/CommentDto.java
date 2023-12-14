@@ -1,4 +1,4 @@
-package ru.skillbox.diplom.group40.social.network.api.dto.task;
+package ru.skillbox.diplom.group40.social.network.api.dto.comment;
 
 import lombok.Data;
 import ru.skillbox.diplom.group40.social.network.api.dto.base.BaseDto;

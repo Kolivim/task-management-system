@@ -1,15 +1,15 @@
-package ru.skillbox.diplom.group40.social.network.impl.mapper.task;
+package ru.skillbox.diplom.group40.social.network.impl.mapper.comment;
 
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.skillbox.diplom.group40.social.network.api.dto.base.BaseDto;
-import ru.skillbox.diplom.group40.social.network.api.dto.task.CommentDto;
+import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
 import ru.skillbox.diplom.group40.social.network.domain.base.BaseEntity;
-import ru.skillbox.diplom.group40.social.network.domain.task.Comment;
+import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-14T00:39:50+0300",
+    date = "2023-12-15T00:13:16+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
@@ -71,9 +71,6 @@ public class CommentMapperImpl implements CommentMapper {
         if ( comment.getCommentText() != null ) {
             commentDto.setCommentText( comment.getCommentText() );
         }
-        if ( comment.getTaskId() != null ) {
-            commentDto.setTaskId( comment.getTaskId() );
-        }
 
         return commentDto;
     }
@@ -86,20 +83,20 @@ public class CommentMapperImpl implements CommentMapper {
 
         Comment comment = new Comment();
 
-        if ( commentDto.getId() != null ) {
-            comment.setId( commentDto.getId() );
-        }
         if ( commentDto.getIsDeleted() != null ) {
             comment.setIsDeleted( commentDto.getIsDeleted() );
+        }
+        else {
+            comment.setIsDeleted( false );
+        }
+        if ( commentDto.getId() != null ) {
+            comment.setId( commentDto.getId() );
         }
         if ( commentDto.getAuthorId() != null ) {
             comment.setAuthorId( commentDto.getAuthorId() );
         }
         if ( commentDto.getCommentText() != null ) {
             comment.setCommentText( commentDto.getCommentText() );
-        }
-        if ( commentDto.getTaskId() != null ) {
-            comment.setTaskId( commentDto.getTaskId() );
         }
 
         return comment;
@@ -122,9 +119,6 @@ public class CommentMapperImpl implements CommentMapper {
         }
         if ( commentDto.getCommentText() != null ) {
             comment.setCommentText( commentDto.getCommentText() );
-        }
-        if ( commentDto.getTaskId() != null ) {
-            comment.setTaskId( commentDto.getTaskId() );
         }
 
         return comment;
