@@ -2,14 +2,24 @@ package ru.skillbox.diplom.group40.social.network.impl.service.comment;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
+import ru.skillbox.diplom.group40.social.network.api.dto.search.BaseSearchDto;
 import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
+import ru.skillbox.diplom.group40.social.network.domain.comment.Comment_;
+import ru.skillbox.diplom.group40.social.network.domain.task.Task;
 import ru.skillbox.diplom.group40.social.network.impl.mapper.comment.CommentMapper;
+import ru.skillbox.diplom.group40.social.network.impl.mapper.task.TaskMapper;
 import ru.skillbox.diplom.group40.social.network.impl.repository.comment.CommentRepository;
-import ru.skillbox.diplom.group40.social.network.impl.repository.task.TaskRepository;
+import ru.skillbox.diplom.group40.social.network.impl.service.task.TaskService;
 import ru.skillbox.diplom.group40.social.network.impl.utils.auth.AuthUtil;
+import ru.skillbox.diplom.group40.social.network.impl.utils.specification.SpecificationUtils;
+
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -19,12 +29,99 @@ public class CommentService {
 
     private  final CommentMapper commentMapper;
     private final CommentRepository commentRepository;
-    private final TaskRepository taskRepository;
+    private final TaskService taskService;
+    private final TaskMapper taskMapper;
+
+    //    private final TaskRepository taskRepository; // Рабочее
 
     public CommentDto create(CommentDto commentDto) {
-        log.info("CommentService: create(CommentDto commentDto) startMethod, CommentDto:{}", commentDto);
+        log.info("CommentService: createComment(CommentDto commentDto) startMethod, CommentDTO: {}", commentDto);
+
         commentDto.setAuthorId(AuthUtil.getUserId());
+
+        /* 1
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Task_.ID, commentDto.getTaskId()));
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+        */
+
+        // 1new
+        Task task = taskMapper.toTask(taskService.getById(commentDto.getTaskId()));
+        // 1new
+
         Comment comment = commentMapper.dtoToModel(commentDto);
-        return commentMapper.modelToDto(commentRepository.save(comment));
+        comment.setTask(task);
+        Comment afterComment = commentRepository.save(comment);
+        log.info("CommentService: createComment Comment: {}, afterComment: {}", comment, afterComment);
+
+        return commentMapper.modelToDto(afterComment);
+    }
+
+    /** Все комменты где передается айдишник из логина - в автора таски */
+    public Page<CommentDto> getAllMeAuthorId(Pageable page) {
+        return getAllByAuthorId(AuthUtil.getUserId(), page);
+    }
+
+
+    /** Все комменты где передается айдишник из логина - в исполнителя таски */
+    public Page<CommentDto> getAllByAuthorId(UUID id, Pageable page) {
+        log.info("CommentService: getAllByAuthorId(UUID id, Pageable page) startMethod, id: {}", id);
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Comment_.AUTHOR_ID, id));
+
+        Page<Comment> comments = commentRepository.findAll(taskSpecification, page);
+        Page<CommentDto> commentsDto = comments.map(commentMapper::modelToDto);
+        return commentsDto;
+    }
+
+    /** Все таски где переданный айдишник - исполнитель таски */
+    /*
+    public Page<CommentDto> getAllByTaskId(UUID id, Pageable page) {
+        log.info("CommentService: getAllByTaskId(UUID id, Pageable page) startMethod, id: {}", id);
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Comment_.TASK, id));
+
+        Page<Comment> comments = commentRepository.findAll(taskSpecification, page);
+        Page<CommentDto> commentsDto = comments.map(commentMapper::modelToDto);
+        return commentsDto;
+    }
+    */
+
+    public CommentDto getById(UUID id) {
+        log.info("CommentService: getAllId(UUID id) startMethod, id: {}", id);
+        Specification commentSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Comment_.ID, id));
+        Comment comment = (Comment) commentRepository.findOne(commentSpecification).orElseThrow();
+        return commentMapper.modelToDto(comment);
+
+    }
+
+    public void deleteById(UUID id) {
+        log.info("CommentService: deleteById(UUID id) startMethod, id: {}", id);
+
+        Specification commentSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
+                .and(SpecificationUtils.in(Comment_.AUTHOR_ID, AuthUtil.getUserId()))
+                .and(SpecificationUtils.in(Comment_.ID, id));
+        Comment comment = (Comment) commentRepository.findOne(commentSpecification).orElseThrow();
+        comment.setIsDeleted(true);
+
+        log.info("CommentService: deleteById(UUID id) endMethod, save Commentk: {}", commentRepository.save(comment));
+    }
+
+    private BaseSearchDto getBaseSearchDto(){
+        BaseSearchDto baseSearchDto = new BaseSearchDto();
+        baseSearchDto.setIsDeleted(false);
+        return  baseSearchDto;
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//    public CommentDto create(CommentDto commentDto) {
+//        log.info("CommentService: create(CommentDto commentDto) startMethod, CommentDto:{}", commentDto);
+//        commentDto.setAuthorId(AuthUtil.getUserId());
+//        Comment comment = commentMapper.dtoToModel(commentDto);
+//        return commentMapper.modelToDto(commentRepository.save(comment));
+//    }

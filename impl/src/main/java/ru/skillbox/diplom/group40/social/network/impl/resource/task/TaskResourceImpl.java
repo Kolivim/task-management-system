@@ -42,6 +42,16 @@ public class TaskResourceImpl implements TaskResource {
     }
 
     @Override
+    public ResponseEntity<Page<TaskDTO>> getAllMeByFilter(TaskDTO taskDTO, Pageable page) {
+        return ResponseEntity.ok(taskService.getAllMeByFilter(taskDTO, page));
+    }
+
+    @Override
+    public ResponseEntity<Page<TaskDTO>> getAllByFilter(TaskDTO taskDTO, Pageable page) {
+        return ResponseEntity.ok(taskService.getAllByFilter(taskDTO, page));
+    }
+
+    @Override
     public ResponseEntity<Page<TaskDTO>> getAllMeAuthorId(Pageable page) {
         return ResponseEntity.ok(taskService.getAllMeAuthorId(page));
     }

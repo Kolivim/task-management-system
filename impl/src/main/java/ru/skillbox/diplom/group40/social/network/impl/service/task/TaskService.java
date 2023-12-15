@@ -49,6 +49,32 @@ public class TaskService {
         return getAllByExecutorId(AuthUtil.getUserId(), page);
     }
 
+    //New filter
+
+    public Page<TaskDTO> getAllMeByFilter(TaskDTO taskDTO, Pageable page) {
+        taskDTO.setAuthorId(AuthUtil.getUserId());
+        return getAllByFilter(taskDTO, page);
+    }
+
+    public Page<TaskDTO> getAllByFilter(TaskDTO taskDTO, Pageable page) {
+        log.info("TaskService: getAllByFilter startMethod, TaskDTO: {}", taskDTO);
+
+        BaseSearchDto baseSearchDto = new BaseSearchDto();
+        baseSearchDto.setIsDeleted(false);
+
+        Specification taskSpecification = SpecificationUtils.getBaseSpecification(baseSearchDto)
+                .and(SpecificationUtils.in(Task_.AUTHOR_ID, taskDTO.getAuthorId()))
+                .and(SpecificationUtils.in(Task_.EXECUTOR_ID, taskDTO.getExecutorId()))
+                .and(SpecificationUtils.in(Task_.STATUS, taskDTO.getStatus()))
+                .and(SpecificationUtils.in(Task_.PRIORITY, taskDTO.getPriority()));
+
+        Page<Task> tasks = taskRepository.findAll(taskSpecification, page);
+        Page<TaskDTO> tasksDto = tasks.map(taskMapper::toTaskDTO);
+        return tasksDto;
+    }
+
+    //New filter
+
     /** Все таски где передается айдишник из логина - в исполнителя таски */
     public Page<TaskDTO> getAllByAuthorId(UUID id, Pageable page) {
 
@@ -120,7 +146,7 @@ public class TaskService {
     }
 
     public TaskDTO updateStatus(TaskDTO taskDTO) {
-        log.info("TaskService: updateStatus(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
+      log.info("TaskService: updateStatus(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId())
@@ -146,7 +172,7 @@ public class TaskService {
     }
 
     public TaskDTO getById(UUID id) {
-        log.info("TaskService: getById(UUID idO) startMethod, id: {}", id);
+        log.info("TaskService: getById(UUID id) startMethod, id: {}", id);
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.ID, id));
