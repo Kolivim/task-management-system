@@ -3,12 +3,9 @@ package ru.skillbox.diplom.group40.social.network.impl.resource.account;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountDto;
-import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountSearchDto;
-import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountStatisticRequestDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.auth.JwtDto;
 import ru.skillbox.diplom.group40.social.network.api.resource.account.AccountResource;
 import ru.skillbox.diplom.group40.social.network.impl.service.account.AccountService;
@@ -113,6 +110,7 @@ public class AccountResourceImpl implements AccountResource{
         }
     }
 
+    /*
     @Override
     @GetMapping("/search")
     public ResponseEntity getResultSearch(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException {
@@ -123,6 +121,7 @@ public class AccountResourceImpl implements AccountResource{
             return generatorResponse(e);
         }
     }
+    */
 
 
     private ResponseEntity generatorResponse(AccountException e) {

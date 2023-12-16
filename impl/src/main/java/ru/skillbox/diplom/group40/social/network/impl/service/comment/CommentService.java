@@ -11,7 +11,6 @@ import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.search.BaseSearchDto;
 import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
 import ru.skillbox.diplom.group40.social.network.domain.comment.Comment_;
-import ru.skillbox.diplom.group40.social.network.domain.task.Task;
 import ru.skillbox.diplom.group40.social.network.impl.mapper.comment.CommentMapper;
 import ru.skillbox.diplom.group40.social.network.impl.mapper.task.TaskMapper;
 import ru.skillbox.diplom.group40.social.network.impl.repository.comment.CommentRepository;
@@ -39,22 +38,16 @@ public class CommentService {
 
         commentDto.setAuthorId(AuthUtil.getUserId());
 
-        /* 1
-        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
-                .and(SpecificationUtils.in(Task_.ID, commentDto.getTaskId()));
-        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
-        */
-
-        // 1new
-        Task task = taskMapper.toTask(taskService.getById(commentDto.getTaskId()));
-        // 1new
+//        Task task = taskMapper.toTask(taskService.getById(commentDto.getTaskId()));
 
         Comment comment = commentMapper.dtoToModel(commentDto);
-        comment.setTask(task);
-        Comment afterComment = commentRepository.save(comment);
-        log.info("CommentService: createComment Comment: {}, afterComment: {}", comment, afterComment);
+        comment.setTask(taskMapper.toTask(taskService.getById(commentDto.getTaskId())));
 
-        return commentMapper.modelToDto(afterComment);
+//        Comment afterComment = commentRepository.save(comment);
+//        log.info("CommentService: createComment Comment: {}, afterComment: {}", comment, afterComment);
+//        return commentMapper.modelToDto(afterComment);
+
+        return commentMapper.modelToDto(commentRepository.save(comment));
     }
 
     /** Все комменты где передается айдишник из логина - в автора таски */
@@ -105,7 +98,7 @@ public class CommentService {
         Comment comment = (Comment) commentRepository.findOne(commentSpecification).orElseThrow();
         comment.setIsDeleted(true);
 
-        log.info("CommentService: deleteById(UUID id) endMethod, save Commentk: {}", commentRepository.save(comment));
+        log.info("CommentService: deleteById(UUID id) endMethod, save Comment: {}", commentRepository.save(comment));
     }
 
     private BaseSearchDto getBaseSearchDto(){
@@ -114,14 +107,3 @@ public class CommentService {
         return  baseSearchDto;
     }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//    public CommentDto create(CommentDto commentDto) {
-//        log.info("CommentService: create(CommentDto commentDto) startMethod, CommentDto:{}", commentDto);
-//        commentDto.setAuthorId(AuthUtil.getUserId());
-//        Comment comment = commentMapper.dtoToModel(commentDto);
-//        return commentMapper.modelToDto(commentRepository.save(comment));
-//    }

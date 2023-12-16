@@ -1,11 +1,8 @@
 package ru.skillbox.diplom.group40.social.network.api.resource.account;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountDto;
-import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountSearchDto;
-import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountStatisticRequestDto;
 
 import javax.security.auth.login.AccountException;
 import java.util.UUID;
@@ -35,8 +32,8 @@ public interface AccountResource {
     public ResponseEntity getId(@PathVariable UUID id)throws AccountException;
     @DeleteMapping("/{id}")
     public ResponseEntity deleteId(@PathVariable UUID id)throws AccountException;
-    @GetMapping("/search")
-    public ResponseEntity getResultSearch(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException;
+//    @GetMapping("/search")
+//    public ResponseEntity getResultSearch(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException;
 
 }
 

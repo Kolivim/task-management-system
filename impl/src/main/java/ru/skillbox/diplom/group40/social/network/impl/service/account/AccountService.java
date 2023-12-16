@@ -66,6 +66,7 @@ public class AccountService {
         log.info("AccountService: getMe() startMethod");
         return mapperAccount.toDto(accountRepository.findById(AuthUtil.getUserId()).orElseThrow(()->new AccountException(BADREUQEST)));
     }
+    /*
     public Page<AccountDto> getResultSearch(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException  {
         Specification spec = like(Account_.COUNTRY, accountSearchDto.getCountry())
                 .and(notEqual(Account_.ID, AuthUtil.getUserId()))
@@ -81,6 +82,8 @@ public class AccountService {
         Page<Account> accounts = accountRepository.findAll(spec, pageable);
         return accounts.map(mapperAccount::toDto);
     }
+    */
+
     public Page<AccountDto> getAll(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException  {
         Specification spec = equal(Account_.COUNTRY, accountSearchDto.getCountry())
                 .or(like(Account_.FIRST_NAME, accountSearchDto.getFirstName()))

@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
 import ru.skillbox.diplom.group40.social.network.api.resource.task.TaskResource;
 import ru.skillbox.diplom.group40.social.network.impl.service.task.TaskService;
@@ -78,14 +77,14 @@ public class TaskResourceImpl implements TaskResource {
     }
 
     @Override
-    public ResponseEntity<TaskDTO> getById(UUID id) {
+    public ResponseEntity<TaskDTO> getById(UUID id){
         return ResponseEntity.ok(taskService.getById(id));
     }
 
-    @Override
-    public ResponseEntity<TaskDTO> createComment(CommentDto commentDto) {
-        return ResponseEntity.ok(taskService.createComment(commentDto));
-    }
+//    @Override
+//    public ResponseEntity<TaskDTO> createComment(CommentDto commentDto) {
+//        return ResponseEntity.ok(taskService.createComment(commentDto));
+//    }
 
 
 
