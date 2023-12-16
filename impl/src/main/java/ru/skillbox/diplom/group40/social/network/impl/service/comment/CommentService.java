@@ -43,6 +43,8 @@ public class CommentService {
         Comment comment = commentMapper.dtoToModel(commentDto);
         comment.setTask(taskMapper.toTask(taskService.getById(commentDto.getTaskId())));
 
+        log.info("CommentService: createComment(CommentDto commentDto) получен к сохранению Comment: {}", comment);
+
 //        Comment afterComment = commentRepository.save(comment);
 //        log.info("CommentService: createComment Comment: {}, afterComment: {}", comment, afterComment);
 //        return commentMapper.modelToDto(afterComment);

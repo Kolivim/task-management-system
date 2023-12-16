@@ -1,6 +1,7 @@
 package ru.skillbox.diplom.group40.social.network.impl.service.task;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -152,13 +153,15 @@ public class TaskService {
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskExecutor(taskDTO, task)));
     }
 
+    @SneakyThrows
     public TaskDTO getById(UUID id){
         log.info("TaskService: getById(UUID id) startMethod, id: {}", id);
 
 //        /* Из-за невозможности выброса ошибки с текстом отключено
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.ID, id));
-        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(()
+                -> new NotFoundException("Задачи с таким UUID не существует"));
 //        */
 
         /*
