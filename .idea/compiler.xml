@@ -34,6 +34,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="social.network" target="17" />
       <module name="social.network-api" target="17" />
       <module name="social.network-db" target="17" />
       <module name="social.network-domain" target="17" />
