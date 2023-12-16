@@ -18,8 +18,6 @@ public class TaskDTO  extends BaseDto {
 
     private String description;
 
-//    private String comment;
-
     private UUID authorId;
 
     private UUID executorId;

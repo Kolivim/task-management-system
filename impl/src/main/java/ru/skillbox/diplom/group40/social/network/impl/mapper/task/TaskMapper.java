@@ -8,7 +8,6 @@ import ru.skillbox.diplom.group40.social.network.domain.task.Task;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TaskMapper {
 
-    //    @Mapping(target = "rating", ignore = true)
     @Mappings({
             @Mapping(target = "isDeleted", source = "isDeleted", defaultValue = "false"),
             @Mapping(target = "status", source = "status", defaultValue = "PENDING")})
@@ -16,7 +15,6 @@ public interface TaskMapper {
 
     TaskDTO toTaskDTO(Task task);
 
-    //    @Mapping(target = "timeChanged", source = "timeChanged", defaultExpression = "java(ZonedDateTime.now())")
     Task toTask(TaskDTO taskDTO, @MappingTarget Task task);
 
     @Mappings({
