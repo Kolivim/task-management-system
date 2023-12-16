@@ -12,12 +12,12 @@ import java.util.UUID;
 public interface CommentResource {
 
     @PostMapping("")
-    ResponseEntity<CommentDto> create(@RequestBody CommentDto commentDto);
+    ResponseEntity<CommentDto> create(@RequestBody CommentDto commentDto) throws Throwable;
     @GetMapping("")
     ResponseEntity<Page<CommentDto>> getByMeAuthorId(Pageable page);
 
     @GetMapping("/{id}")
-    ResponseEntity<CommentDto> getById(@PathVariable UUID id);
+    ResponseEntity<CommentDto> getById(@PathVariable UUID id) throws Throwable;
 
     @GetMapping("/author/{id}")
     ResponseEntity<Page<CommentDto>> getByAuthorId(@PathVariable UUID id, Pageable page);
@@ -26,6 +26,6 @@ public interface CommentResource {
 //    ResponseEntity<Page<CommentDto>> getByTaskId(@PathVariable UUID id, Pageable page);
 
     @DeleteMapping("/{id}")
-    ResponseEntity deleteById(@PathVariable UUID id);
+    ResponseEntity deleteById(@PathVariable UUID id) throws Throwable;
 
 }

@@ -18,7 +18,7 @@ public class CommentResourceImpl implements CommentResource {
     private final CommentService commentService;
 
     @Override
-    public ResponseEntity<CommentDto> create(CommentDto commentDto) {
+    public ResponseEntity<CommentDto> create(CommentDto commentDto) throws Throwable {
         return ResponseEntity.ok(commentService.create(commentDto));
     }
 
@@ -29,7 +29,7 @@ public class CommentResourceImpl implements CommentResource {
 
 
     @Override
-    public ResponseEntity<CommentDto> getById(UUID id) {
+    public ResponseEntity<CommentDto> getById(UUID id) throws Throwable {
         return ResponseEntity.ok(commentService.getById(id));
     }
 
@@ -44,7 +44,7 @@ public class CommentResourceImpl implements CommentResource {
 //    }
 
     @Override
-    public ResponseEntity deleteById(UUID id) {
+    public ResponseEntity deleteById(UUID id) throws Throwable {
         commentService.deleteById(id);
         return ResponseEntity.ok().body("Комментарий удален успешно");
     }

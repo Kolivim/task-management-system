@@ -15,13 +15,13 @@ public interface TaskResource {
     ResponseEntity<TaskDTO> create(@RequestBody TaskDTO taskDTO);
 
     @PutMapping("")
-    ResponseEntity update(@RequestBody TaskDTO taskDTO);
+    ResponseEntity update(@RequestBody TaskDTO taskDTO) throws Throwable;
 
     @PutMapping("/status")
-    ResponseEntity updateStatus(@RequestBody TaskDTO taskDTO);
+    ResponseEntity updateStatus(@RequestBody TaskDTO taskDTO) throws Throwable;
 
     @PutMapping("/executor")
-    ResponseEntity updateExecutor(@RequestBody TaskDTO taskDTO);
+    ResponseEntity updateExecutor(@RequestBody TaskDTO taskDTO) throws Throwable;
 
     @GetMapping("/filter/me")
     ResponseEntity<Page<TaskDTO>> getAllMeByFilter(@RequestBody TaskDTO taskDTO, Pageable page);
@@ -43,10 +43,10 @@ public interface TaskResource {
     ResponseEntity<Page<TaskDTO>> getAllByExecutorId(@PathVariable UUID id, Pageable page);
 
     @DeleteMapping("/{id}")
-    ResponseEntity deleteById(@PathVariable UUID id);
+    ResponseEntity deleteById(@PathVariable UUID id) throws Throwable;
 
     @GetMapping("/{id}")
-    ResponseEntity<TaskDTO> getById(@PathVariable UUID id);
+    ResponseEntity<TaskDTO> getById(@PathVariable UUID id) throws Throwable;
 
 //    @PostMapping("/addcomment")
 //    ResponseEntity<TaskDTO> createComment(@RequestBody CommentDto commentDto);

@@ -12,7 +12,7 @@ import ru.skillbox.diplom.group40.social.network.domain.task.Task;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-16T14:43:18+0300",
+    date = "2023-12-16T15:05:14+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
@@ -26,6 +26,12 @@ public class TaskMapperImpl implements TaskMapper {
 
         Task task = new Task();
 
+        if ( taskDTO.getIsDeleted() != null ) {
+            task.setIsDeleted( taskDTO.getIsDeleted() );
+        }
+        else {
+            task.setIsDeleted( false );
+        }
         if ( taskDTO.getStatus() != null ) {
             task.setStatus( taskDTO.getStatus() );
         }
@@ -33,7 +39,6 @@ public class TaskMapperImpl implements TaskMapper {
             task.setStatus( StatusType.PENDING );
         }
         task.setId( taskDTO.getId() );
-        task.setIsDeleted( taskDTO.getIsDeleted() );
         task.setPriority( taskDTO.getPriority() );
         task.setTitle( taskDTO.getTitle() );
         task.setDescription( taskDTO.getDescription() );

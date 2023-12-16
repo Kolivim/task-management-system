@@ -26,17 +26,17 @@ public class TaskResourceImpl implements TaskResource {
 
     @Override
 //    @PutMapping("")
-    public ResponseEntity update(TaskDTO taskDTO) {
+    public ResponseEntity update(TaskDTO taskDTO) throws Throwable {
         return ResponseEntity.ofNullable(taskService.update(taskDTO));
     }
 
     @Override
-    public ResponseEntity updateStatus(TaskDTO taskDTO) {
+    public ResponseEntity updateStatus(TaskDTO taskDTO) throws Throwable {
         return ResponseEntity.ofNullable(taskService.updateStatus(taskDTO));
     }
 
     @Override
-    public ResponseEntity updateExecutor(TaskDTO taskDTO) {
+    public ResponseEntity updateExecutor(TaskDTO taskDTO) throws Throwable {
         return ResponseEntity.ofNullable(taskService.updateExecutor(taskDTO));
     }
 
@@ -71,13 +71,13 @@ public class TaskResourceImpl implements TaskResource {
     }
 
     @Override
-    public ResponseEntity deleteById(UUID id) {
+    public ResponseEntity deleteById(UUID id) throws Throwable {
         taskService.deleteById(id);
         return ResponseEntity.ok().body("Задача удалёна успешно");
     }
 
     @Override
-    public ResponseEntity<TaskDTO> getById(UUID id){
+    public ResponseEntity<TaskDTO> getById(UUID id) throws Throwable {
         return ResponseEntity.ok(taskService.getById(id));
     }
 

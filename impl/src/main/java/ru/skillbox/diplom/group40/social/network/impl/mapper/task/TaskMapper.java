@@ -10,7 +10,7 @@ public interface TaskMapper {
 
     //    @Mapping(target = "rating", ignore = true)
     @Mappings({
-//            @Mapping(target = "isDeleted", source = "isDeleted", defaultValue = "false"),
+            @Mapping(target = "isDeleted", source = "isDeleted", defaultValue = "false"),
             @Mapping(target = "status", source = "status", defaultValue = "PENDING")})
     Task toTask(TaskDTO taskDTO);
 

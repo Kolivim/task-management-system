@@ -10,7 +10,7 @@ public class AdviceController {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<String> handleException(NotFoundException e) {
-        return ResponseEntity.status(401).body(e.getMessage());
+        return ResponseEntity.status(404).body(e.getMessage());
     }
 
 }

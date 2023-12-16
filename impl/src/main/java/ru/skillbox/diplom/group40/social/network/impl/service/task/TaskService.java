@@ -1,7 +1,6 @@
 package ru.skillbox.diplom.group40.social.network.impl.service.task;
 
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +20,7 @@ import ru.skillbox.diplom.group40.social.network.impl.repository.user.UserReposi
 import ru.skillbox.diplom.group40.social.network.impl.utils.auth.AuthUtil;
 import ru.skillbox.diplom.group40.social.network.impl.utils.specification.SpecificationUtils;
 
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Slf4j
@@ -102,32 +102,34 @@ public class TaskService {
         return tasksDto;
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(UUID id) throws Throwable {
         log.info("TaskService: deleteById(UUID id) startMethod, id: {}", id);
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
                 .and(SpecificationUtils.in(Task_.ID, id));
 
-        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(()
+                -> new NotFoundException("Задачи с таким UUID не существует либо вы не являетесь автором задачи"));
         task.setIsDeleted(true);
 
         log.info("TaskService: deleteById(UUID id) endMethod, save Task: {}", taskRepository.save(task));
     }
 
-    public TaskDTO update(TaskDTO taskDTO) {
+    public TaskDTO update(TaskDTO taskDTO) throws Throwable {
         log.info("TaskService: update(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
                 .and(SpecificationUtils.in(Task_.ID, taskDTO.getId()));
 
-        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(/*NotFoundException(NOT_FOUND_MESSAGE)::new*/);
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(()
+                -> new NotFoundException("Задачи с таким UUID не существует либо вы не являетесь автором задачи"));
 
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTask(taskDTO, task)));
     }
 
-    public TaskDTO updateStatus(TaskDTO taskDTO) {
+    public TaskDTO updateStatus(TaskDTO taskDTO) throws Throwable {
       log.info("TaskService: updateStatus(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
@@ -135,26 +137,35 @@ public class TaskService {
                         .or(SpecificationUtils.in(Task_.EXECUTOR_ID, AuthUtil.getUserId())))
                 .and(SpecificationUtils.in(Task_.ID, taskDTO.getId()));
 
-        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
-
-        return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskStatus(taskDTO, task)));
+        try{
+            Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(()
+                    -> new NotFoundException("Задачи с таким UUID не существует либо вы не являетесь " +
+                    "автором/исполнителем задачи"));
+            return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskStatus(taskDTO, task)));
+        } catch (NoSuchElementException e) {
+            throw new NotFoundException("Задачи с таким UUID не существует либо вы не являетесь " +
+                    "автором/исполнителем задачи");
+        }
 
     }
 
-    public TaskDTO updateExecutor(TaskDTO taskDTO) {
+    public TaskDTO updateExecutor(TaskDTO taskDTO) throws Throwable {
         log.info("TaskService: updateExecutor(TaskDTO taskDTO) startMethod, TaskDTO: {}", taskDTO);
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
                 .and(SpecificationUtils.in(Task_.ID, taskDTO.getId()));
 
-        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
+        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(()
+                -> new NotFoundException("Задачи с таким UUID не существует либо вы не являетесь автором задачи"));
+
+        isUserExist(taskDTO.getExecutorId());
 
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskExecutor(taskDTO, task)));
     }
 
-    @SneakyThrows
-    public TaskDTO getById(UUID id){
+
+    public TaskDTO getById(UUID id) throws Throwable {
         log.info("TaskService: getById(UUID id) startMethod, id: {}", id);
 
 //        /* Из-за невозможности выброса ошибки с текстом отключено
