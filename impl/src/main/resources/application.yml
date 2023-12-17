@@ -1,6 +1,8 @@
 server:
   port: 8080
 spring:
+  profiles:
+    active: testaccount
   liquibase:
     enabled: true
     drop-first: ${DROP_FIRST:false}

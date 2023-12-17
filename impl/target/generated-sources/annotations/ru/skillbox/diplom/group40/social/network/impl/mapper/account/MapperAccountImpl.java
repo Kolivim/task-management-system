@@ -8,7 +8,7 @@ import ru.skillbox.diplom.group40.social.network.domain.account.Account;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-16T14:43:07+0300",
+    date = "2023-12-17T00:26:58+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component

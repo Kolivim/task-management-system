@@ -14,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class JwtDto {
     private UUID id;
+    private String userId;
     private String email;
     private List<String> roles;
 }
