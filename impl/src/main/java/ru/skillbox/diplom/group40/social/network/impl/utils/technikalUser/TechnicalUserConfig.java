@@ -34,11 +34,32 @@ public class TechnicalUserConfig {
         }
     }
 
+    public <T> T executeByTestUser(Supplier<T> lambda) {
+        log.info("TechnicalUserConfig:executeByTechnicalUser start method");
+        try {
+            createTestContext();
+            return lambda.get();
+        } finally {
+            System.out.println(SecurityContextHolder.createEmptyContext());
+        }
+    }
+
     private void createContextForKafka() {
         log.info("TechnicalUserConfig:createContextForKafka start method");
         JwtDto jwtDto = new JwtDto();
         jwtDto.setUserId(UUID.randomUUID().toString());
         jwtDto.setEmail("kafka@email");
+        jwtDto.setRoles(Collections.singletonList("ROLES_KAFKA"));
+        JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(createToken(jwtDto));
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(jwtAuthenticationToken);
+    }
+
+    private void createTestContext() {
+        log.info("TechnicalUserConfig:createTestContext start method");
+        JwtDto jwtDto = new JwtDto();
+        jwtDto.setUserId("f7d1002-9cc6-11ee-8c90-0242ac120002");
+        jwtDto.setEmail("test@email");
         jwtDto.setRoles(Collections.singletonList("ROLES_KAFKA"));
         JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(createToken(jwtDto));
         SecurityContext sc = SecurityContextHolder.getContext();

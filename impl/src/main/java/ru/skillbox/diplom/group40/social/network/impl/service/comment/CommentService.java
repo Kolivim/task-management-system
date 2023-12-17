@@ -75,7 +75,7 @@ public class CommentService {
     }
 
     public CommentDto getById(UUID id) throws Throwable {
-        log.info("CommentService: getAllId(UUID id) startMethod, id: {}", id);
+        log.info("CommentService: getById(UUID id) startMethod, id: {}", id);
         Specification commentSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Comment_.ID, id));
         Comment comment = (Comment) commentRepository.findOne(commentSpecification).orElseThrow(()
