@@ -1,20 +1,15 @@
 package ru.skillbox.diplom.group40.social.network.api.dto.account;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-/**
- * AccountDto
- *
- * @taras281 Taras
- */
 @Data
 public class RolesDto {
+    @Schema(description = "Идентификатор")
     private UUID id;
+    @Schema(description = "Роль")
     private String role;
 
 }

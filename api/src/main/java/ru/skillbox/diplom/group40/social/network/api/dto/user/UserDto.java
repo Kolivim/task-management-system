@@ -1,8 +1,7 @@
 package ru.skillbox.diplom.group40.social.network.api.dto.user;
 
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.skillbox.diplom.group40.social.network.api.dto.base.BaseDto;
 
@@ -13,14 +12,15 @@ import java.util.UUID;
 @Setter
 public class UserDto extends BaseDto {
 
+    @Schema(description = "Идентификатор пользователя")
     private UUID id;
-
+    @Schema(description = "Метка удаления")
     private boolean isDeleted;
-
+    @Schema(description = "Имя пользователя")
     private String firstName;
-
+    @Schema(description = "Фамилия пользователя")
     private String lastName;
-
+    @Schema(description = "Email")
     private String email;
 
     private LocalDateTime registrationDate;
@@ -29,5 +29,6 @@ public class UserDto extends BaseDto {
 
     private LocalDateTime updatedOn;
 
+    @Schema(description = "Пароль")
     private String password;
 }

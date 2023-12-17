@@ -77,7 +77,6 @@ public class TaskService {
         return tasksDto;
     }
 
-    /** Все таски где передается айдишник из логина - в исполнителя таски */
     public Page<TaskDTO> getAllByAuthorId(UUID id, Pageable page) {
 
         BaseSearchDto baseSearchDto = new BaseSearchDto();
@@ -91,7 +90,6 @@ public class TaskService {
         return tasksDto;
     }
 
-    /** Все таски где переданный айдишник - исполнитель таски */
     public Page<TaskDTO> getAllByExecutorId(UUID id, Pageable page) {
 
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())

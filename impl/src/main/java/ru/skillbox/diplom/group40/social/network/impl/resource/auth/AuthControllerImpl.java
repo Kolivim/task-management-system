@@ -1,15 +1,17 @@
 package ru.skillbox.diplom.group40.social.network.impl.resource.auth;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.skillbox.diplom.group40.social.network.api.dto.account.AccountDto;
+import ru.skillbox.diplom.group40.social.network.api.dto.account.ChangeEmailDto;
+import ru.skillbox.diplom.group40.social.network.api.dto.account.PasswordChangeDto;
 import ru.skillbox.diplom.group40.social.network.api.dto.auth.*;
 import ru.skillbox.diplom.group40.social.network.api.resource.auth.AuthController;
 import ru.skillbox.diplom.group40.social.network.impl.service.auth.AuthService;
-import ru.skillbox.diplom.group40.social.network.impl.service.passRecovery.RecoveryService;
 import ru.skillbox.diplom.group40.social.network.impl.service.auth.CaptchaService;
+import ru.skillbox.diplom.group40.social.network.impl.service.passRecovery.RecoveryService;
 
 @Controller
 @RequestMapping("/api/v1/auth")
@@ -68,12 +70,11 @@ public class AuthControllerImpl implements AuthController {
         return ResponseEntity.ok(captchaService.getCaptcha());
     }
 
-
-    @Override
-    public ResponseEntity<String> test(String param1, String param2, RegistrationDto registrationDto) {
-        System.out.println(registrationDto);
-        System.out.println(param1);
-        System.out.println(param2);
-        return ResponseEntity.ok("hello");
-    }
+//    @Override
+//    public ResponseEntity<String> test(String param1, String param2, RegistrationDto registrationDto) {
+//        System.out.println(registrationDto);
+//        System.out.println(param1);
+//        System.out.println(param2);
+//        return ResponseEntity.ok("hello");
+//    }
 }

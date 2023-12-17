@@ -6,7 +6,7 @@ import ru.skillbox.diplom.group40.social.network.domain.base.BaseEntity;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-17T19:55:00+0300",
+    date = "2023-12-17T21:38:35+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 public class BaseMapperImpl implements BaseMapper {

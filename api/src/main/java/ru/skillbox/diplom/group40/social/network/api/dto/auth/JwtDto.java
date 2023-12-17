@@ -1,5 +1,6 @@
 package ru.skillbox.diplom.group40.social.network.api.dto.auth;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +14,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JwtDto {
+
+    @Schema(description = "id токена")
     private UUID id;
+    @Schema(description = "id пользователя")
     private String userId;
+    @Schema(description = "email пользователя")
     private String email;
+    @Schema(description = "список ролей пользователя")
     private List<String> roles;
 }

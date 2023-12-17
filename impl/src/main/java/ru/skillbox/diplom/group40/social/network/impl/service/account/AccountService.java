@@ -42,49 +42,56 @@ public class AccountService {
         log.info("AccountService:create() startMethod");
         Account account = mapperAccount.toEntity(accountDto);
         account.setRegistrationDate(LocalDateTime.now(ZoneId.of("Z")));
-        account.setRoles(roleService.getRoleSet(Arrays.asList("USER","MODERATOR")));
+        account.setRoles(roleService.getRoleSet(Arrays.asList("USER", "MODERATOR")));
         account = accountRepository.save(account);
         return mapperAccount.toDto(account);
     }
 
     public AccountDto update(AccountDto accountDto) throws AccountException {
-        log.info("AccountService:update() startMethod");
-        return mapperAccount.toDto(accountRepository.save(mapperAccount.toEntity(accountDto)));
+        log.info("AccountService:putMe() startMethod");
+        Account account = accountDto.getId() != null ? accountRepository
+                .findById(accountDto.getId()).get() : accountRepository.findById(AuthUtil.getUserId()).get();
+        account = mapperAccount.rewriteEntity(accountRepository.findById(account.getId()).get(), accountDto);
+        accountRepository.save(account);
+        return mapperAccount.toDto(account);
     }
 
     public AccountDto getByEmail(String email) throws AccountException {
         log.info("AccountService:get(String email) startMethod");
-        return mapperAccount.toDto(accountRepository.findFirstByEmail(email).orElseThrow(()->new AccountException("BADREUQEST")));
+        return mapperAccount.toDto(accountRepository.findFirstByEmail(email).orElseThrow(() -> new AccountException("BADREUQEST")));
     }
 
     public AccountDto getId(UUID uuid) throws AccountException {
         log.info("AccountService:get(String email) startMethod");
-        return mapperAccount.toDto(accountRepository.findById(uuid).orElseThrow(()->new AccountException("BADREUQEST")));
+        return mapperAccount.toDto(accountRepository.findById(uuid).orElseThrow(() -> new AccountException("BADREUQEST")));
     }
 
     public AccountDto getMe() throws AccountException {
         log.info("AccountService: getMe() startMethod");
-        return mapperAccount.toDto(accountRepository.findById(AuthUtil.getUserId()).orElseThrow(()->new AccountException(BADREUQEST)));
+        return mapperAccount.toDto(accountRepository.findById(AuthUtil.getUserId()).orElseThrow(() -> new AccountException(BADREUQEST)));
     }
+
     /*
-    public Page<AccountDto> getResultSearch(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException  {
-        Specification spec = like(Account_.COUNTRY, accountSearchDto.getCountry())
-                .and(notEqual(Account_.ID, AuthUtil.getUserId()))
-                .and(like(Account_.FIRST_NAME, accountSearchDto.getFirstName()))
-                .and(like(Account_.LAST_NAME, accountSearchDto.getLastName()))
-                .and(like(Account_.CITY, accountSearchDto.getCity()))
-                .and(equal(Account_.EMAIL, accountSearchDto.getEmail()))
-                .and(between(Account_.BIRTH_DATE, accountSearchDto.getAgeFrom(), accountSearchDto.getAgeTo()))
-                .or(in(Account_.ID, accountSearchDto.getIds()));
-        if(accountSearchDto.getAuthor()!=null){
-            spec = spec.and(like(Account_.FIRST_NAME, accountSearchDto.getAuthor()));
+    public AccountDto changePassword(PasswordChangeDto passwordChangeDtoDto) {
+        if (!passwordChangeDtoDto.getNewPassword1().equals(passwordChangeDtoDto.getNewPassword2())) {
+            new AccountException("введенные пароли не совпадают");
         }
-        Page<Account> accounts = accountRepository.findAll(spec, pageable);
-        return accounts.map(mapperAccount::toDto);
+        AccountDto accountDto = new AccountDto();
+        accountDto.setPassword(passwordChangeDtoDto.getNewPassword1());
+        accountDto.setId(AuthUtil.getUserId());
+        return update(accountDto);
+    }
+
+    public AccountDto changeEmail(ChangeEmailDto changeEmailDto) {
+        AccountDto accountDto = new AccountDto();
+        accountDto.setEmail(changeEmailDto.getEmail().getEmail());
+        accountDto.setId(AuthUtil.getUserId());
+        return update(accountDto);
     }
     */
 
-    public Page<AccountDto> getAll(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException  {
+
+    public Page<AccountDto> getAll(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException {
         Specification spec = equal(Account_.COUNTRY, accountSearchDto.getCountry())
                 .or(like(Account_.FIRST_NAME, accountSearchDto.getFirstName()))
                 .or(like(Account_.LAST_NAME, accountSearchDto.getLastName()))
@@ -96,22 +103,23 @@ public class AccountService {
         return accounts.map(mapperAccount::toDto);
     }
 
-    public AccountDto putMe(AccountDto accountDto) throws AccountException{
+    public AccountDto putMe(AccountDto accountDto) throws AccountException {
         log.info("AccountService:putMe() startMethod");
         return mapperAccount.toDto(mapperAccount.rewriteEntity(accountRepository.findById(AuthUtil.getUserId()).get(), accountDto));
     }
 
-    public boolean delete() throws AccountException{
+    public boolean delete() throws AccountException {
         log.info("AccountService:delete() startMethod");
         accountRepository.deleteById(AuthUtil.getUserId());
         return true;
     }
 
-    public boolean deleteId(UUID id) throws AccountException{
+    public boolean deleteId(UUID id) throws AccountException {
         log.info("AccountService:deleteId() startMethod");
         accountRepository.deleteById(id);
         return true;
     }
+
     //TODO нужен метод?
     @Deprecated
     public JwtDto getJwtDto(AuthenticateDto authenticateDto) {
@@ -127,9 +135,10 @@ public class AccountService {
         account.get().setLastOnlineTime(LocalDateTime.now());
         return jwtDto;
     }
+
     //TODO нужен?
     @Deprecated
-    public Boolean doesAccountWithSuchEmailExist(String email){
+    public Boolean doesAccountWithSuchEmailExist(String email) {
         return accountRepository.findFirstByEmail(email).isPresent();
     }
 
@@ -138,20 +147,21 @@ public class AccountService {
     private List<String> listOfRolesFromSetOfRoles(Set<Role> roles) {
         log.info("AccountService:listOfRolesFromSetOfRoles() startMethod");
         ArrayList<String> roleNames = new ArrayList<>();
-        for(Role role : roles){
+        for (Role role : roles) {
             roleNames.add(role.getRole());
         }
         return roleNames;
     }
+
     //TODO уже такой метод -> getByEmail
     @Deprecated
-    public Account getAccountByEmail(String email){
+    public Account getAccountByEmail(String email) {
         return accountRepository.findFirstByEmail(email).orElse(null);
     }
 
     //TODO нужен?
     @Deprecated
-    public void save(Account account){
+    public void save(Account account) {
         accountRepository.save(account);
     }
 }

@@ -30,6 +30,7 @@ public class FilterChainConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers(allowedPath).permitAll()
+                .requestMatchers("/api/v1/sw/**").permitAll()
                 .anyRequest().authenticated()
 //                .anyRequest().hasAuthority()
 //                .anyRequest().hasRole()

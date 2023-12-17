@@ -1,33 +1,29 @@
 package ru.skillbox.diplom.group40.social.network.api.dto.account;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import ru.skillbox.diplom.group40.social.network.api.dto.base.BaseDto;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-/**
- * AccountDto
- *
- * @taras281 Taras
- */
 @Data
 public class AccountDto extends BaseDto {
 
+    @Schema(description = "Имя пользователя")
     private String firstName;
-
+    @Schema(description = "Фамилия пользователя")
     private String lastName;
-
+    @Schema(description = "Email")
     private String email;
-
+    @Schema(description = "Пароль")
     private String password;
-
+    @Schema(description = "Телефон")
     private String phone;
 
     private String photo;
 
     private String profileCover;
-
+    @Schema(description = "О пользователе")
     private String about;
 
     private String city;
@@ -37,7 +33,6 @@ public class AccountDto extends BaseDto {
 
     //private Frend statusCode;
 
-
     private LocalDateTime birthDate;
 
     private String messagePermission;
@@ -45,8 +40,7 @@ public class AccountDto extends BaseDto {
     private LocalDateTime lastOnlineTime;
 
     private boolean isOnline;
-
-
+    @Schema(description = "Метка блокировки пользователя")
     private boolean isBlocked;
 
     private String emojiStatus;

@@ -28,8 +28,8 @@
           <entry name="$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar" />
         </processorPath>
         <module name="social.network-impl" />
-        <module name="social.network-domain" />
         <module name="social.network-db" />
+        <module name="social.network-domain" />
         <module name="social.network-api" />
       </profile>
     </annotationProcessing>

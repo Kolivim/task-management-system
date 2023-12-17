@@ -8,5 +8,4 @@
     <include file="v.0.1_01_initial_schema.xml" relativeToChangelogFile="true"/>
     <include file="v.0.1_02_initial_task.xml" relativeToChangelogFile="true"/>
     <include file="v.0.1_03_initial_comment.xml" relativeToChangelogFile="true"/>
-    <include file="v.0.1_04_initial_task_comment.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

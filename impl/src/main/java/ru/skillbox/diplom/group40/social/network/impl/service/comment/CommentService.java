@@ -61,9 +61,6 @@ public class CommentService {
     }
 
 
-    /**
-     * Все комменты где передается айдишник из логина - в исполнителя таски
-     */
     public Page<CommentDto> getAllByAuthorId(UUID id, Pageable page) {
         log.info("CommentService: getAllByAuthorId(UUID id, Pageable page) startMethod, id: {}", id);
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())

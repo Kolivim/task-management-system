@@ -106,3 +106,9 @@ security:
 #cloudinary.api_secret: ${CL_API_SECRET:BzsU8c95MxdyLtzjzoxulVX47K8}
 #cloudinary.cloud_name: ${CL_NAME:networkskillbox}
 #cloudinary.api_key: ${CL_KEY:394391898715588}
+
+springdoc:
+  swagger-ui:
+    path: /api/v1/sw/
+  api-docs:
+    path: /api/v1/sw
