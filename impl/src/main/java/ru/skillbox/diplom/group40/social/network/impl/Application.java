@@ -8,11 +8,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import ru.skillbox.diplom.group40.social.network.impl.repository.base.BaseRepositoryImpl;
 
-/**
- * Application
- *
- * @author Sergey Darin
- */
 @EnableCaching
 @SpringBootApplication(exclude = {RedisAutoConfiguration.class})
 @EntityScan("ru/skillbox/diplom/group40/social/network/domain.*")
