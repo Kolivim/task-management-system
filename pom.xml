@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <artifactId>social.network</artifactId>
-    <groupId>ru.skillbox.diplom.group40</groupId>
+    <artifactId>task.management</artifactId>
+    <groupId>ru.kolivim.myproject</groupId>
     <version>${project.version}</version>
 
     <packaging>pom</packaging>

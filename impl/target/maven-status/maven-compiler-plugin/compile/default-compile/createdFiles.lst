@@ -34,7 +34,6 @@ ru\kolivim\myproject\task\management\system\impl\security\cookie\BodyWrapper$1.c
 ru\kolivim\myproject\task\management\system\impl\mapper\comment\CommentMapperImpl.class
 ru\kolivim\myproject\task\management\system\impl\Application.class
 ru\kolivim\myproject\task\management\system\impl\repository\role\RoleRepository.class
-ru\kolivim\myproject\task\management\system\impl\websocket\WebSocketHandler.class
 ru\kolivim\myproject\task\management\system\impl\resource\account\AccountResourceImpl.class
 ru\kolivim\myproject\task\management\system\impl\utils\passwordRecovery\PasswordRecoveryUtil.class
 ru\kolivim\myproject\task\management\system\impl\utils\technikalUser\TechnicalUserConfig.class
@@ -43,7 +42,6 @@ ru\kolivim\myproject\task\management\system\impl\mapper\base\BaseMapperImpl.clas
 ru\kolivim\myproject\task\management\system\impl\security\jwt\KeyUtils.class
 ru\kolivim\myproject\task\management\system\impl\exception\NotFoundException.class
 ru\kolivim\myproject\task\management\system\impl\repository\base\BaseRepositoryImpl.class
-ru\kolivim\myproject\task\management\system\impl\websocket\WebSocketConfig.class
 ru\kolivim\myproject\task\management\system\impl\repository\account\AccountRepository.class
 ru\kolivim\myproject\task\management\system\impl\mapper\comment\CommentMapper.class
 ru\kolivim\myproject\task\management\system\impl\resource\comment\CommentResourceImpl.class
