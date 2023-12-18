@@ -10,9 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
 
-    <name>SKILLBOX :: DIPLOM :: social.network :: db</name>
-    <description>social.network db</description>
-    <artifactId>social.network-db</artifactId>
+    <name>KOLIVIM :: MYPROJECT :: task.management :: db</name>
+    <description>task.management db</description>
+    <artifactId>task.management-db</artifactId>
 
     <dependencies>
         <dependency>

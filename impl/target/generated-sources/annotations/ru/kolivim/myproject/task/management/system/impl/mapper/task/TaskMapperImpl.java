@@ -12,7 +12,7 @@ import ru.kolivim.myproject.task.management.system.domain.task.Task;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-18T08:22:06+0300",
+    date = "2023-12-19T01:15:36+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
