@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
-import ru.skillbox.diplom.group40.social.network.api.dto.task.PriorityType;
-import ru.skillbox.diplom.group40.social.network.api.dto.task.StatusType;
-import ru.skillbox.diplom.group40.social.network.api.dto.task.TaskDTO;
-import ru.skillbox.diplom.group40.social.network.domain.task.Task;
-import ru.skillbox.diplom.group40.social.network.impl.mapper.task.TaskMapper;
+import ru.kolivim.myproject.task.management.system.api.dto.comment.CommentDto;
+import ru.kolivim.myproject.task.management.system.api.dto.task.PriorityType;
+import ru.kolivim.myproject.task.management.system.api.dto.task.StatusType;
+import ru.kolivim.myproject.task.management.system.api.dto.task.TaskDTO;
+import ru.kolivim.myproject.task.management.system.domain.task.Task;
 
 import java.util.ArrayList;
 import java.util.UUID;

@@ -3,9 +3,8 @@ package ru.kolivim.myproject.task.management.system.impl.mapper.comment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-import ru.skillbox.diplom.group40.social.network.api.dto.comment.CommentDto;
-import ru.skillbox.diplom.group40.social.network.domain.comment.Comment;
-import ru.skillbox.diplom.group40.social.network.impl.mapper.comment.CommentMapper;
+import ru.kolivim.myproject.task.management.system.api.dto.comment.CommentDto;
+import ru.kolivim.myproject.task.management.system.domain.comment.Comment;
 
 import java.util.UUID;
 

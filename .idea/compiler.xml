@@ -34,12 +34,16 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="social.network" target="17" />
       <module name="social.network-api" target="17" />
       <module name="social.network-db" target="17" />
       <module name="social.network-domain" target="17" />
       <module name="social.network-impl" target="17" />
       <module name="task-management-system" target="17" />
+      <module name="task.management" target="17" />
+      <module name="task.management-api" target="17" />
+      <module name="task.management-db" target="17" />
+      <module name="task.management-domain" target="17" />
+      <module name="task.management-impl" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -48,6 +52,10 @@
       <module name="social.network-db" options="-parameters" />
       <module name="social.network-domain" options="-parameters" />
       <module name="social.network-impl" options="-parameters" />
+      <module name="task.management-api" options="-parameters" />
+      <module name="task.management-db" options="-parameters" />
+      <module name="task.management-domain" options="-parameters" />
+      <module name="task.management-impl" options="-parameters" />
     </option>
   </component>
 </project>
