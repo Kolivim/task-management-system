@@ -30,7 +30,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="social.network-api" />
+    <orderEntry type="module" module-name="task-management-api" />
     <orderEntry type="library" name="Maven: io.swagger.core.v3:swagger-annotations:2.2.18" level="project" />
     <orderEntry type="library" name="Maven: io.swagger:swagger-annotations:1.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.orm:hibernate-envers:6.2.6.Final" level="project" />
