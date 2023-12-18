@@ -8,12 +8,11 @@ import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ContextConfiguration;
-import ru.skillbox.diplom.group40.social.network.api.dto.search.BaseSearchDto;
-import ru.skillbox.diplom.group40.social.network.impl.mapper.comment.CommentMapper;
-import ru.skillbox.diplom.group40.social.network.impl.mapper.task.TaskMapper;
-import ru.skillbox.diplom.group40.social.network.impl.repository.comment.CommentRepository;
-import ru.skillbox.diplom.group40.social.network.impl.service.comment.CommentService;
-import ru.skillbox.diplom.group40.social.network.impl.service.task.TaskService;
+import ru.kolivim.myproject.task.management.system.api.dto.search.BaseSearchDto;
+import ru.kolivim.myproject.task.management.system.impl.mapper.comment.CommentMapper;
+import ru.kolivim.myproject.task.management.system.impl.mapper.task.TaskMapper;
+import ru.kolivim.myproject.task.management.system.impl.repository.comment.CommentRepository;
+import ru.kolivim.myproject.task.management.system.impl.service.task.TaskService;
 
 @Slf4j
 @ExtendWith({MockitoExtension.class})

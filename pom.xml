@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <artifactId>social.network</artifactId>
-    <groupId>ru.skillbox.diplom.group40</groupId>
+    <artifactId>task.management</artifactId>
+    <groupId>ru.kolivim.myproject</groupId>
     <version>${project.version}</version>
 
     <packaging>pom</packaging>
@@ -26,8 +26,8 @@
     </properties>
 
 
-    <name>SKILLBOX :: DIPLOM :: social.network</name>
-    <description>social.network</description>
+    <name>KOLIVIM :: MYPROJECT :: task.management</name>
+    <description>task.management</description>
 
 
 
@@ -137,7 +137,7 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
-                        <mainClass>ru.skillbox.diplom.group40.social.network.impl.Application</mainClass>
+                        <mainClass>ru.kolivim.myproject.task.management.system.impl.Application</mainClass>
                     </configuration>
                     <executions>
                         <execution>

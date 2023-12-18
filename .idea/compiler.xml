@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for SKILLBOX :: DIPLOM :: social.network" enabled="true">
+      <profile name="Annotation profile for KOLIVIM :: MYPROJECT :: task.management" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -27,27 +27,35 @@
           <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar" />
         </processorPath>
-        <module name="social.network-impl" />
-        <module name="social.network-db" />
-        <module name="social.network-domain" />
-        <module name="social.network-api" />
+        <module name="task-management-api" />
+        <module name="task-management-domain" />
+        <module name="task-management-db" />
+        <module name="task-management-impl" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="social.network" target="17" />
-      <module name="social.network-api" target="17" />
-      <module name="social.network-db" target="17" />
-      <module name="social.network-domain" target="17" />
-      <module name="social.network-impl" target="17" />
+      <module name="task-management-api" target="17" />
+      <module name="task-management-db" target="17" />
+      <module name="task-management-domain" target="17" />
+      <module name="task-management-impl" target="17" />
       <module name="task-management-system" target="17" />
+      <module name="task.management" target="17" />
+      <module name="task.management-api" target="17" />
+      <module name="task.management-db" target="17" />
+      <module name="task.management-domain" target="17" />
+      <module name="task.management-impl" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="social.network-api" options="-parameters" />
-      <module name="social.network-db" options="-parameters" />
-      <module name="social.network-domain" options="-parameters" />
-      <module name="social.network-impl" options="-parameters" />
+      <module name="task-management-api" options="-parameters" />
+      <module name="task-management-db" options="-parameters" />
+      <module name="task-management-domain" options="-parameters" />
+      <module name="task-management-impl" options="-parameters" />
+      <module name="task.management-api" options="-parameters" />
+      <module name="task.management-db" options="-parameters" />
+      <module name="task.management-domain" options="-parameters" />
+      <module name="task.management-impl" options="-parameters" />
     </option>
   </component>
 </project>

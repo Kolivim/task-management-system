@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/social.network.iml" filepath="$PROJECT_DIR$/social.network.iml" />
-      <module fileurl="file://$PROJECT_DIR$/api/social.network-api.iml" filepath="$PROJECT_DIR$/api/social.network-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/db/social.network-db.iml" filepath="$PROJECT_DIR$/db/social.network-db.iml" />
-      <module fileurl="file://$PROJECT_DIR$/domain/social.network-domain.iml" filepath="$PROJECT_DIR$/domain/social.network-domain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/impl/social.network-impl.iml" filepath="$PROJECT_DIR$/impl/social.network-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api/task-management-api.iml" filepath="$PROJECT_DIR$/api/task-management-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/db/task-management-db.iml" filepath="$PROJECT_DIR$/db/task-management-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain/task-management-domain.iml" filepath="$PROJECT_DIR$/domain/task-management-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/impl/task-management-impl.iml" filepath="$PROJECT_DIR$/impl/task-management-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/task.management.iml" filepath="$PROJECT_DIR$/task.management.iml" />
     </modules>
   </component>
 </project>
