@@ -1,14 +1,14 @@
 spring:
   application:
-    name: social.network
+    name: task.management
 
   cloud:
     kubernetes:
       sources:
-        - name: social.network
+        - name: task.management
       secrets:
         sources:
-          - name: social.network
+          - name: task.management
       reload:
         enabled: true
 
