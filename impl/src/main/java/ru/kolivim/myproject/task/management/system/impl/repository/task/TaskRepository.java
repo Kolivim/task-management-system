@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface TaskRepository extends BaseRepository<Task> {
-
     Optional<Task> findByIdAndIsDeletedFalse(UUID id);
 
 }

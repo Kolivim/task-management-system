@@ -31,8 +31,6 @@ public class AccountDto extends BaseDto {
     private String country;
     private LocalDateTime regDate;
 
-    //private Frend statusCode;
-
     private LocalDateTime birthDate;
 
     private String messagePermission;
