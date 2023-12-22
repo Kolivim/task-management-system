@@ -120,8 +120,7 @@ public class AccountService {
         return true;
     }
 
-    //TODO нужен метод?
-    @Deprecated
+
     public JwtDto getJwtDto(AuthenticateDto authenticateDto) {
         log.info("AccountService:getJwtDto() startMethod");
         Optional<Account> account = accountRepository.findFirstByEmail(authenticateDto.getEmail());
@@ -131,19 +130,14 @@ public class AccountService {
         jwtDto.setId(account.get().getId());
         jwtDto.setEmail(account.get().getEmail());
         jwtDto.setRoles(listOfRolesFromSetOfRoles(account.get().getRoles()));
-        //Антон ниже строку не убивай мне нужно для записи времени когда был последний раз пользователь
         account.get().setLastOnlineTime(LocalDateTime.now());
         return jwtDto;
     }
 
-    //TODO нужен?
-    @Deprecated
     public Boolean doesAccountWithSuchEmailExist(String email) {
         return accountRepository.findFirstByEmail(email).isPresent();
     }
 
-    //TODO нужен?
-    @Deprecated
     private List<String> listOfRolesFromSetOfRoles(Set<Role> roles) {
         log.info("AccountService:listOfRolesFromSetOfRoles() startMethod");
         ArrayList<String> roleNames = new ArrayList<>();
@@ -153,14 +147,10 @@ public class AccountService {
         return roleNames;
     }
 
-    //TODO уже такой метод -> getByEmail
-    @Deprecated
     public Account getAccountByEmail(String email) {
         return accountRepository.findFirstByEmail(email).orElse(null);
     }
 
-    //TODO нужен?
-    @Deprecated
     public void save(Account account) {
         accountRepository.save(account);
     }

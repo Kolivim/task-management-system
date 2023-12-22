@@ -19,13 +19,11 @@ public class TaskResourceImpl implements TaskResource {
     private final TaskService taskService;
 
     @Override
-//    @PostMapping("")
     public ResponseEntity<TaskDTO> create(@RequestBody TaskDTO taskDTO) {
         return ResponseEntity.ok(taskService.create(taskDTO));
     }
 
     @Override
-//    @PutMapping("")
     public ResponseEntity update(TaskDTO taskDTO) throws Throwable {
         return ResponseEntity.ofNullable(taskService.update(taskDTO));
     }
@@ -80,10 +78,5 @@ public class TaskResourceImpl implements TaskResource {
     public ResponseEntity<TaskDTO> getById(UUID id) throws Throwable {
         return ResponseEntity.ok(taskService.getById(id));
     }
-
-//    @Override
-//    public ResponseEntity<TaskDTO> createComment(CommentDto commentDto) {
-//        return ResponseEntity.ok(taskService.createComment(commentDto));
-//    }
 
 }

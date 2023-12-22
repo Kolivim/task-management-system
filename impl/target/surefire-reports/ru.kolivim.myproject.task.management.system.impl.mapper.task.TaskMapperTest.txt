@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ru.kolivim.myproject.task.management.system.impl.mapper.task.TaskMapperTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s - in ru.kolivim.myproject.task.management.system.impl.mapper.task.TaskMapperTest

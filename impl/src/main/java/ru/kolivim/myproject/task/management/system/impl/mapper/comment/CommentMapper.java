@@ -11,6 +11,9 @@ import ru.kolivim.myproject.task.management.system.impl.mapper.base.BaseMapper;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface CommentMapper extends BaseMapper {
+
+    @Mappings({
+            @Mapping(target = "taskId", source = "task.id")})
     CommentDto modelToDto(Comment comment);
 
     @Mappings({

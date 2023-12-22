@@ -33,7 +33,6 @@ public class TaskService {
     private final CommentMapper commentMapper;
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
-//    private final CommentRepository commentRepository;
 
     private static String NOT_FOUND_MESSAGE = "Задача не найдена";
 
@@ -44,7 +43,6 @@ public class TaskService {
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTask(taskDTO)));
     }
 
-    /** Все таски где передается айдишник из логина - в автора таски */
     public Page<TaskDTO> getAllMeAuthorId(Pageable page) {
         return getAllByAuthorId(AuthUtil.getUserId(), page);
     }
@@ -52,8 +50,6 @@ public class TaskService {
     public Page<TaskDTO> getAllMeExecutorId(Pageable page) {
         return getAllByExecutorId(AuthUtil.getUserId(), page);
     }
-
-    //New filter
 
     public Page<TaskDTO> getAllMeByFilter(TaskDTO taskDTO, Pageable page) {
         taskDTO.setAuthorId(AuthUtil.getUserId());
@@ -162,21 +158,13 @@ public class TaskService {
         return taskMapper.toTaskDTO(taskRepository.save(taskMapper.toTaskExecutor(taskDTO, task)));
     }
 
-
     public TaskDTO getById(UUID id) throws Throwable {
         log.info("TaskService: getById(UUID id) startMethod, id: {}", id);
 
-//        /* Из-за невозможности выброса ошибки с текстом отключено
         Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
                 .and(SpecificationUtils.in(Task_.ID, id));
         Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow(()
                 -> new NotFoundException("Задачи с таким UUID не существует"));
-//        */
-
-        /*
-        Task task = taskRepository.findByIdAndIsDeletedFalse(id).orElseThrow(()
-                -> new NotFoundException("Задачи с таким UUID не существует"));
-        */
 
         return taskMapper.toTaskDTO(task);
     }
@@ -193,24 +181,5 @@ public class TaskService {
                 -> new NotFoundException("Пользователя с таким UUID не существует"));
         return true;
     }
-
-//    public TaskDTO createComment(CommentDto commentDto) {
-//        log.info("TaskService: createComment(CommentDto commentDto) startMethod, TaskDTO: {}", commentDto);
-//
-//        commentDto.setAuthorId(AuthUtil.getUserId());
-//
-//        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
-////                .and(SpecificationUtils.in(Task_.AUTHOR_ID, AuthUtil.getUserId()))
-//                .and(SpecificationUtils.in(Task_.ID, commentDto.getTaskId()));
-//
-//        Task task = (Task) taskRepository.findOne(taskSpecification).orElseThrow();
-//
-//        Comment comment = commentMapper.dtoToModel(commentDto);
-//        comment.setTask(task);
-//        Comment afterComment = commentRepository.save(comment);
-//        log.info("TaskService: createComment Comment: {}, afterComment: {}", comment, afterComment);
-//
-//        return taskMapper.toTaskDTO(task);
-//    }
 
 }

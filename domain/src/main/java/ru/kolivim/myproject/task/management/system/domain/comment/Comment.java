@@ -25,9 +25,6 @@ public class Comment extends BaseEntity {
     private String commentText;
 
     @ManyToOne
-//    @JoinColumn(name = "task_id", nullable = false)
     private Task task;
 
-//    @Column (name = "task_id")
-//    private UUID taskId;
 }

@@ -67,11 +67,4 @@ public class AuthControllerImpl implements AuthController {
         return ResponseEntity.ok(captchaService.getCaptcha());
     }
 
-//    @Override
-//    public ResponseEntity<String> test(String param1, String param2, RegistrationDto registrationDto) {
-//        System.out.println(registrationDto);
-//        System.out.println(param1);
-//        System.out.println(param2);
-//        return ResponseEntity.ok("hello");
-//    }
 }

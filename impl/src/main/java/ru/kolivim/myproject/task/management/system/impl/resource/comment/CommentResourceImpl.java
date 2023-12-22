@@ -38,11 +38,6 @@ public class CommentResourceImpl implements CommentResource {
         return ResponseEntity.ok(commentService.getAllByAuthorId(id, page));
     }
 
-//    @Override
-//    public ResponseEntity<Page<CommentDto>> getByTaskId(UUID id, Pageable page) {
-//        return ResponseEntity.ok(commentService.getAllByTaskId(id, page));
-//    }
-
     @Override
     public ResponseEntity deleteById(UUID id) throws Throwable {
         commentService.deleteById(id);
