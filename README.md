@@ -1,10 +1,8 @@
 # Запуск среды окружения
 
 1. Скачать и установить Docker Desktop, для вашей операционной системы [Docker-Desktop](https://www.docker.com/products/docker-desktop/)
-2. Находясь в корневой директории приложения (с docker-compose файлом) выполнить команду docker-compose up -d 
+2. Выполнить команду:
 (параметр -d запустит контейнер в фоновом режиме)
-3. остановить контейнер можно командой docker-compose down
+docker run -it -d --name estimates_calculator -e POSTGRES_PASSWORD=estimates -e POSTGRES_USER=estimates -e POSTGRES_DB=estimates --network estimates -p 5432:5432 postgres:15.4
 
-# Подключен swagger
-
-Доступ к swagger открыт по адресу http://localhost:8080/api/v1/sw/
+docker run -it -d --name estimates_calculator -e POSTGRES_PASSWORD=estimates -e POSTGRES_USER=estimates -e POSTGRES_DB=estimates -p 5432:5432 postgres:15.4

@@ -110,20 +110,6 @@ public class AccountResourceImpl implements AccountResource{
         }
     }
 
-    /*
-    @Override
-    @GetMapping("/search")
-    public ResponseEntity getResultSearch(AccountSearchDto accountSearchDto, Pageable pageable) throws AccountException {
-        log.info("AccountResourceImpl:getMe() startMethod");
-        try {
-            return ResponseEntity.ok(accountServices.getResultSearch(accountSearchDto, pageable));
-        } catch (AccountException e) {
-            return generatorResponse(e);
-        }
-    }
-    */
-
-
     private ResponseEntity generatorResponse(AccountException e) {
         log.info("AccountResourceImpl:generateResponse() startMethod");
         if(e.getMessage().equals("unautorized")){

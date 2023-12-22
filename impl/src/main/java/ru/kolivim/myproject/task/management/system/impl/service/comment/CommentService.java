@@ -32,30 +32,19 @@ public class CommentService {
     private final TaskService taskService;
     private final TaskMapper taskMapper;
 
-    //    private final TaskRepository taskRepository; // Рабочее
-
     public CommentDto create(CommentDto commentDto) throws Throwable {
         log.info("CommentService: createComment(CommentDto commentDto) startMethod, CommentDTO: {}", commentDto);
 
         commentDto.setAuthorId(AuthUtil.getUserId());
-
-//        Task task = taskMapper.toTask(taskService.getById(commentDto.getTaskId()));
 
         Comment comment = commentMapper.dtoToModel(commentDto);
         comment.setTask(taskMapper.toTask(taskService.getById(commentDto.getTaskId())));
 
         log.info("CommentService: createComment(CommentDto commentDto) получен к сохранению Comment: {}", comment);
 
-//        Comment afterComment = commentRepository.save(comment);
-//        log.info("CommentService: createComment Comment: {}, afterComment: {}", comment, afterComment);
-//        return commentMapper.modelToDto(afterComment);
-
         return commentMapper.modelToDto(commentRepository.save(comment));
     }
 
-    /**
-     * Все комменты где передается айдишник из логина - в автора таски
-     */
     public Page<CommentDto> getAllMeAuthorId(Pageable page) {
         return getAllByAuthorId(AuthUtil.getUserId(), page);
     }
@@ -78,10 +67,8 @@ public class CommentService {
         Comment comment = (Comment) commentRepository.findOne(commentSpecification).orElseThrow(()
                 -> new NotFoundException("Комментария с таким UUID не существует"));
         return commentMapper.modelToDto(comment);
-
     }
 
-    //    @SneakyThrows
     public void deleteById(UUID id) throws Throwable {
         log.info("CommentService: deleteById(UUID id) startMethod, id: {}", id);
 
@@ -101,17 +88,3 @@ public class CommentService {
         return baseSearchDto;
     }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /*
-    public Page<CommentDto> getAllByTaskId(UUID id, Pageable page) {
-        log.info("CommentService: getAllByTaskId(UUID id, Pageable page) startMethod, id: {}", id);
-        Specification taskSpecification = SpecificationUtils.getBaseSpecification(getBaseSearchDto())
-                .and(SpecificationUtils.in(Comment_.TASK, id));
-
-        Page<Comment> comments = commentRepository.findAll(taskSpecification, page);
-        Page<CommentDto> commentsDto = comments.map(commentMapper::modelToDto);
-        return commentsDto;
-    }
-    */

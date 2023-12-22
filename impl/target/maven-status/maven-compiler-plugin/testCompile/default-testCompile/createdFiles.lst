@@ -1,0 +1,6 @@
+ru\kolivim\myproject\task\management\system\impl\CommentServiceTest.class
+ru\kolivim\myproject\task\management\system\impl\mapper\comment\CommentMapperTest.class
+ru\kolivim\myproject\task\management\system\impl\TaskServiceTest.class
+ru\kolivim\myproject\task\management\system\impl\mapper\task\TaskMapperTest.class
+ru\kolivim\myproject\task\management\system\impl\service\comment\CommentServiceTest.class
+ru\kolivim\myproject\task\management\system\impl\TestConfiguration.class

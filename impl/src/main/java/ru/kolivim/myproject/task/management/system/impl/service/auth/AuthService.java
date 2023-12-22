@@ -43,12 +43,4 @@ public class AuthService {
         return true;
     }
 
-
-
-    public void testRegister(RegistrationDto loginDto) {    //временный метод для тестов
-        //можно написать свой код
-
-    }
-
-
 }

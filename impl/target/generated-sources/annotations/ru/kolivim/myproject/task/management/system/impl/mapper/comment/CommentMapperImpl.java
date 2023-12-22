@@ -1,15 +1,17 @@
 package ru.kolivim.myproject.task.management.system.impl.mapper.comment;
 
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.kolivim.myproject.task.management.system.api.dto.base.BaseDto;
 import ru.kolivim.myproject.task.management.system.api.dto.comment.CommentDto;
 import ru.kolivim.myproject.task.management.system.domain.base.BaseEntity;
 import ru.kolivim.myproject.task.management.system.domain.comment.Comment;
+import ru.kolivim.myproject.task.management.system.domain.task.Task;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-19T01:15:36+0300",
+    date = "2023-12-22T12:33:13+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Oracle Corporation)"
 )
 @Component
@@ -59,6 +61,10 @@ public class CommentMapperImpl implements CommentMapper {
 
         CommentDto commentDto = new CommentDto();
 
+        UUID id = commentTaskId( comment );
+        if ( id != null ) {
+            commentDto.setTaskId( id );
+        }
         if ( comment.getId() != null ) {
             commentDto.setId( comment.getId() );
         }
@@ -122,5 +128,20 @@ public class CommentMapperImpl implements CommentMapper {
         }
 
         return comment;
+    }
+
+    private UUID commentTaskId(Comment comment) {
+        if ( comment == null ) {
+            return null;
+        }
+        Task task = comment.getTask();
+        if ( task == null ) {
+            return null;
+        }
+        UUID id = task.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }
